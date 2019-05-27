@@ -1,7 +1,6 @@
 ---
-title: "Abstract"
-author: "Sayani Gupta"
-date: "27/05/2019"
+title: "gravitas: An R package for visualizing time granularties"
+author: "Sayani Gupta - Department of Econometrics and Business Economics, Monash University"
 output: html_document
 ---
 
@@ -9,22 +8,14 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+Project gravitas aims to provide methods to operate on time in an automated way, to deconstruct it in many different ways. Deconstructions of time that respect the linear progression of time like days, weeks and months are defined as linear time granularities and those that accommodate for periodicities in time like hour of the day or day of the month are defined as circular granularities or calendar categorizations. Often visualizing data across these circular granularities are a way to go when we want to explore periodicities, pattern or anomalies in the data. Also, because of the large volume of data in recent days, using probability distributions for display is a potentially useful approach. This will provide these techniques into the tidy workflow, so that probability distributions can be examined in the range of graphics available in the ggplot2 package. In particular, this work aims to provide the following:
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+1) Construct any time granularity
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+2) This provides checks on the feasibility of plotting or drawing inference from two granularities together. 
 
-```{r cars}
-summary(cars)
-```
+Slicing and dicing time in multiple ways and plotting them together to understand periodicties in data are useful. However, some combinations of circular time granularities facilitate while others hinder exploratory analysis. The combinations of circular granularities which promote exploratory analysis through visualization are referred to as harmonies and the ones which impede the analysis are referred to as clashes. This work will help categorise any two categorisations as harmonies or clashes and provide advice on possible visualisation techniques and relevant statistical summaries to bring out the best of EDA.
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
