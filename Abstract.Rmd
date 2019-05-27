@@ -1,21 +1,16 @@
 ---
-title: "gravitas: An R package for visualizing time granularties"
-author: "Sayani Gupta - Department of Econometrics and Business Economics, Monash University"
-output: html_document
+title: "Exploring probability distributions for bivariate temporal granularities"
+author: "Sayani Gupta - Department of Econometrics and Business Statistics, Monash University"
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Project gravitas aims to provide methods to operate on time in an automated way, to deconstruct it in many different ways. Deconstructions of time that respect the linear progression of time like days, weeks and months are defined as linear time granularities and those that accommodate for periodicities in time like hour of the day or day of the month are defined as circular granularities or calendar categorizations. Often visualizing data across these circular granularities are a way to go when we want to explore periodicities, pattern or anomalies in the data. Also, because of the large volume of data in recent days, using probability distributions for display is a potentially useful approach. This will provide these techniques into the tidy workflow, so that probability distributions can be examined in the range of graphics available in the ggplot2 package. In particular, this work aims to provide the following:
+Smart meters measuring energy usage at finer temporal scales, are installed on many households in many countries now. Providing tools to explore this type of data is an important activity. We propose to provide methods to operate on time in an automated way, to deconstruct it in many different ways. Deconstructions of time that respect the linear progression of time like days, weeks and months are defined as linear time granularities and those that accommodate for periodicities in time like hour of the day or day of the month are defined as circular granularities or calendar categorizations. Often visualizing data across these circular granularities are a way to go when we want to explore periodicities, pattern or anomalies in the data. Also, because of the large volume of data in recent days, using probability distributions for display is a potentially useful approach. This work provides these techniques into the tidy workflow, so that probability distributions can be examined in the range of graphics available in the [ggplot2](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf) package. In particular, this work establishes the following:
 
-1) Construct any time granularity
+- Provides functions to create multiple-order-up time granularities. For example, week of the month, hour of the week or quarter hour of the day. This is an extension to the [lubridate]([https://cran.r-project.org/web/packages/lubridate/lubridate.pdf) package, which also allows creating calendar categorizations, usually one-order-up.
 
-2) This provides checks on the feasibility of plotting or drawing inference from two granularities together. 
-
-Slicing and dicing time in multiple ways and plotting them together to understand periodicties in data are useful. However, some combinations of circular time granularities facilitate while others hinder exploratory analysis. The combinations of circular granularities which promote exploratory analysis through visualization are referred to as harmonies and the ones which impede the analysis are referred to as clashes. This work will help categorise any two categorisations as harmonies or clashes and provide advice on possible visualisation techniques and relevant statistical summaries to bring out the best of EDA.
-
-
-
+- Provides checks on the feasibility of plotting or drawing inference from two granularities together. It categorizes pairs of granularities as either a harmony or clash, where harmonies are pairs of circular granularities that aid exploratory data analysis. Clashes are pairs that are incompatible with each other for exploratory analysis. Appropriate data structures are provided to visualize with the grammar of graphics for harmonies.
 
