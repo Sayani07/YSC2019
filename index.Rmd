@@ -1,0 +1,166 @@
+---
+title: "Visualisation and analysis of probability distributions of variables defined on  spatio-temporal granularities"
+type: "contributed"
+author: "<br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> @Sayani07"
+date: <font size="5"> Department of Econometrics and Business Statistics <br> February 28, 2019
+output:
+  xaringan::moon_reader:
+    css: ["default","libs/data_viz_theme.css"]
+    self_contained: false
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+options(htmltools.dir.version = FALSE, tibble.width = 55, tibble.print_min = 4)
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE, comment = "#>",
+  fig.path = 'figure/', cache.path = 'cache/', fig.align = 'center', 
+  fig.width = 12, fig.show = 'hold', fig.height = 8.5, # 16:9
+  cache = TRUE, external = TRUE, dev = 'svglite'
+)
+read_chunk('R/theme.R')
+read_chunk('R/main.R')
+```
+
+
+# <span style="color:DarkBlue"> Motivation - Electricity smart meter technology 
+
+## <span style="color:DarkBlue">  Data description (~ 40 billion half hourly observations)
+
+.pull-left[
+
+.center-left[
+- Source
+<br>
+<br>
+- Frequency
+<br>
+<br>
+- Time Frame
+<br>
+<br>
+- Spread
+<br>
+<br>
+- Type
+<br>
+<br>
+- Dimension
+]
+]
+
+.pull-right[
+.center-left[
+Data61, CSIRO
+<br>
+<br>
+<br>
+Half hourly interval meter reading (Kwh)
+<br>
+<br>
+<br>
+2012 to 2014
+<br>
+<br>
+<br>
+14K (approx.) households based in Newcastle, New South Wales, and parts of Sydney
+<br>
+<br>
+Spatio - Temporal Data
+<br>
+<br>
+<br>
+Univariate
+]
+]
+
+???
+Smart meters record electricity usage (per kWh) every 30 minutes and send this information to the electricity retailer for billing
+
+**Consumers** can save considerable amount on their electricity bill by 
+- Switching on their hot water heater or do laundry when energy is cheaper, or when their solar system is generating surplus energy 
+- Switching off appliances during peak demands
+- Check usage and compare with similar homes 
+
+**Retailers** can reduce costs and increase efficiency
+- Lowering metering and connection fees 
+- Drawing insights into when customer is home, or sleeping, or even what appliances they are using based on usage figures
+- Rewarding customers for mindful usage
+---
+
+
+
+## Decontructing temporal data
+
+<span style="color:#c33c3c"> **Granularities** : <span style="color:Black">  Abstractions of time based on Calendar
+<br>
+
+.pull-left[
+**Arrangement**
+- <span style="color:#c33c3c"> **Linear** : <span style="color:Black"> days, weeks, months, years
+- <span style="color:#c33c3c"> **Circular** : <span style="color:Black"> day-of-week, month-of-year or hour-of-day
+- <span style="color:#c33c3c"> **Aperiodic** : <span style="color:Black"> day-of-month, week-of-month
+
+<span style="color:black"><i> Examples from Gregorian calendar </i>
+]
+
+
+.pull-right[
+**Order**  
+
+ In Mayan system, the calendar (peridic) was structured as follows: 
+
+ - 1 kin = 1 day
+ - 1 uinal = 20 kin
+ - 1 tun  = 18 uinal
+ - 1 katun = 20 tun
+ - 1 baktun = 20 katun 
+ 
+<span style="color:#c33c3c"> **Single-order-up** <span style="color:Black"> :nested within single level of hierarchy viz. kin_uinal  
+<br>
+<span style="color:#c33c3c"> **Multiple-order-up**<span style="color:Black"> :nested within multiple levels of hierarchy viz. kin-of-tun, uinal-of-katun
+
+
+
+
+]
+
+
+---
+
+## <span style="color:DarkBlue">  Exploratory Data Analysis?
+
+Developed by **John Tukey** as a way of _*systematically*_ using the tools of statistics on a problem before a hypotheses about the data were developed
+
+###  How can it help?
+
+ - Big problem broken into pieces by focusing on subsets
+<br>
+ - Visualization of <span style="color:Crimson"> probability distributions <span style="color:Black"> at varying resolutions of time
+<br>
+ - Find regular patterns/ anomalies or pockets of similar behavior
+
+---
+
+## <span style="color:DarkBlue"> Breaking down the big problem
+
+
+Visualize the distribution of the variable across bivariate granularities. 
+
+
+## Still problems?
+
+ - How can I compute any granularity given the calendar or hierarchy table?
+ <br>
+ - What are the exhaustive list of bivariate granularities I can look at?
+ <br>
+ - Which bivariate granularities amongst them are compatible with each other for visualisation?
+ <br>
+ - Which probability distribution plots to choose in which situation? box, violin, ridge, density, letter value, quantiles and many more.
+
+---

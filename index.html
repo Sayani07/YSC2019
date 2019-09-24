@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Visualisation and analysis of probability distributions of variables defined on spatio-temporal granularities</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="  Sayani Gupta     @Sayani07" />
+    <link href="index_files/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/data_viz_theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Visualisation and analysis of probability distributions of variables defined on spatio-temporal granularities
+### <br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> <span class="citation">@Sayani07</span>
+### <font size="5"> Department of Econometrics and Business Statistics <br> February 28, 2019
+
+---
+
+
+
+
+
+# &lt;span style="color:DarkBlue"&gt; Motivation - Electricity smart meter technology 
+
+## &lt;span style="color:DarkBlue"&gt;  Data description (~ 40 billion half hourly observations)
+
+.pull-left[
+
+.center-left[
+- Source
+&lt;br&gt;
+&lt;br&gt;
+- Frequency
+&lt;br&gt;
+&lt;br&gt;
+- Time Frame
+&lt;br&gt;
+&lt;br&gt;
+- Spread
+&lt;br&gt;
+&lt;br&gt;
+- Type
+&lt;br&gt;
+&lt;br&gt;
+- Dimension
+]
+]
+
+.pull-right[
+.center-left[
+Data61, CSIRO
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+Half hourly interval meter reading (Kwh)
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+2012 to 2014
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+14K (approx.) households based in Newcastle, New South Wales, and parts of Sydney
+&lt;br&gt;
+&lt;br&gt;
+Spatio - Temporal Data
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+Univariate
+]
+]
+
+???
+Smart meters record electricity usage (per kWh) every 30 minutes and send this information to the electricity retailer for billing
+
+**Consumers** can save considerable amount on their electricity bill by 
+- Switching on their hot water heater or do laundry when energy is cheaper, or when their solar system is generating surplus energy 
+- Switching off appliances during peak demands
+- Check usage and compare with similar homes 
+
+**Retailers** can reduce costs and increase efficiency
+- Lowering metering and connection fees 
+- Drawing insights into when customer is home, or sleeping, or even what appliances they are using based on usage figures
+- Rewarding customers for mindful usage
+---
+
+
+
+## Decontructing temporal data
+
+&lt;span style="color:#c33c3c"&gt; **Granularities** : &lt;span style="color:Black"&gt;  Abstractions of time based on Calendar
+&lt;br&gt;
+
+.pull-left[
+**Arrangement**
+- &lt;span style="color:#c33c3c"&gt; **Linear** : &lt;span style="color:Black"&gt; days, weeks, months, years
+- &lt;span style="color:#c33c3c"&gt; **Circular** : &lt;span style="color:Black"&gt; day-of-week, month-of-year or hour-of-day
+- &lt;span style="color:#c33c3c"&gt; **Aperiodic** : &lt;span style="color:Black"&gt; day-of-month, week-of-month
+
+&lt;span style="color:black"&gt;&lt;i&gt; Examples from Gregorian calendar &lt;/i&gt;
+]
+
+
+.pull-right[
+**Order**  
+
+ In Mayan system, the calendar (peridic) was structured as follows: 
+
+ - 1 kin = 1 day
+ - 1 uinal = 20 kin
+ - 1 tun  = 18 uinal
+ - 1 katun = 20 tun
+ - 1 baktun = 20 katun 
+ 
+&lt;span style="color:#c33c3c"&gt; **Single-order-up** &lt;span style="color:Black"&gt; :nested within single level of hierarchy viz. kin_uinal  
+&lt;br&gt;
+&lt;span style="color:#c33c3c"&gt; **Multiple-order-up**&lt;span style="color:Black"&gt; :nested within multiple levels of hierarchy viz. kin-of-tun, uinal-of-katun
+
+
+
+
+]
+
+
+---
+
+## &lt;span style="color:DarkBlue"&gt;  Exploratory Data Analysis?
+
+Developed by **John Tukey** as a way of _*systematically*_ using the tools of statistics on a problem before a hypotheses about the data were developed
+
+###  How can it help?
+
+ - Big problem broken into pieces by focusing on subsets
+&lt;br&gt;
+ - Visualization of &lt;span style="color:Crimson"&gt; probability distributions &lt;span style="color:Black"&gt; at varying resolutions of time
+&lt;br&gt;
+ - Find regular patterns/ anomalies or pockets of similar behavior
+
+---
+
+## &lt;span style="color:DarkBlue"&gt; Breaking down the big problem
+
+
+Visualize the distribution of the variable across bivariate granularities. 
+
+
+## Still problems?
+
+ - How can I compute any granularity given the calendar or hierarchy table?
+ &lt;br&gt;
+ - What are the exhaustive list of bivariate granularities I can look at?
+ &lt;br&gt;
+ - Which bivariate granularities amongst them are compatible with each other for visualisation?
+ &lt;br&gt;
+ - Which probability distribution plots to choose in which situation? box, violin, ridge, density, letter value, quantiles and many more.
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
