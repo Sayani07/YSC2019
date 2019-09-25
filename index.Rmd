@@ -1,5 +1,5 @@
 ---
-title: "Visualisation and analysis of probability distributions of variables defined on  spatio-temporal granularities"
+title: "Exploring probability distributions for bivariate temporal granularities"
 type: "contributed"
 author: "<br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> @Sayani07"
 date: <font size="5"> Department of Econometrics and Business Statistics <br> February 28, 2019
@@ -20,13 +20,12 @@ options(htmltools.dir.version = FALSE, tibble.width = 55, tibble.print_min = 4)
 opts_chunk$set(
   echo = FALSE, warning = FALSE, message = FALSE, comment = "#>",
   fig.path = 'figure/', cache.path = 'cache/', fig.align = 'center', 
-  fig.width = 12, fig.show = 'hold', fig.height = 8.5, # 16:9
+  fig.width = 12, fig.show = 'hold', fig.height = 6, # 16:9
   cache = TRUE, external = TRUE, dev = 'svglite'
 )
 read_chunk('R/theme.R')
 read_chunk('R/main.R')
 ```
-
 
 # <span style="color:DarkBlue"> Motivation - Electricity smart meter technology 
 
@@ -91,11 +90,30 @@ Smart meters record electricity usage (per kWh) every 30 minutes and send this i
 - Lowering metering and connection fees 
 - Drawing insights into when customer is home, or sleeping, or even what appliances they are using based on usage figures
 - Rewarding customers for mindful usage
+
+---
+
+background-image: url("images/problem.png")
+class: hide-slide-number
+
 ---
 
 
+## <span style="color:DarkBlue">  Exploratory Data Analysis
 
-## Decontructing temporal data
+Developed by **John Tukey** as a way of _*systematically*_ using the tools of statistics on a problem before a hypotheses about the data were developed.
+
+## Goal
+
+<span style="color:Black"> Provide a platform to <span style="color:Crimson"> systematically explore <span style="color:Black">  multiple perspectives of <span style="color:Crimson"> temporal data <span style="color:Black"> across <span style="color:Crimson"> deconstructed time <span style="color:Black"> to
+explore behaviors or summarize the behavior through <span style="color:Crimson"> visualizing probability distributions <span style="color:Black"> to find
+ 
+- regular patterns
+- anomalies 
+
+---
+
+## Decontructing time
 
 <span style="color:#c33c3c"> **Granularities** : <span style="color:Black">  Abstractions of time based on Calendar
 <br>
@@ -132,27 +150,18 @@ Smart meters record electricity usage (per kWh) every 30 minutes and send this i
 
 ---
 
-## <span style="color:DarkBlue">  Exploratory Data Analysis?
 
-Developed by **John Tukey** as a way of _*systematically*_ using the tools of statistics on a problem before a hypotheses about the data were developed
-
-###  How can it help?
-
- - Big problem broken into pieces by focusing on subsets
-<br>
- - Visualization of <span style="color:Crimson"> probability distributions <span style="color:Black"> at varying resolutions of time
-<br>
- - Find regular patterns/ anomalies or pockets of similar behavior
-
----
-
-## <span style="color:DarkBlue"> Breaking down the big problem
+## <span style="color:DarkBlue"> Visualizing probability distributions
 
 
-Visualize the distribution of the variable across bivariate granularities. 
+
+ - Breaking down the big problem
 
 
-## Still problems?
+Visualize the  <large><span style="color:Crimson">probability distribution  <span style="color:Black"></large> of the variable across <large> <span style="color:Crimson"></large> bivariate granularities <span style="color:black">. 
+
+
+#### Still problems?
 
  - How can I compute any granularity given the calendar or hierarchy table?
  <br>
@@ -164,22 +173,67 @@ Visualize the distribution of the variable across bivariate granularities.
 
 ---
 
-## Package gravitas 
+class: center,middle
 
-granularity visualisation of time series data 
+# <span style="color:MediumVioletRed"> Package gravitas </span>
+
+##   granularity visualisation of time series data 
+
 
 ---
 
-# An example: electricity consumption
+## An example : Electricity smart meter data
+
+<i><small>Data source</i></small> : [<small><i>Department of the Environment and Energy, Australia</i></small>](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)
 
 ```{r load}
 ```
 
-.center[
-.card[.large[key:households]]  
-.card[.large[interval: 30 minutes]]  
-.card[.large[index: Time]]  
-.card[.large[measured variable: Demand]]  
-]
+### Get set of possible temporal granularities with `search_gran()`
 
-.footnote[[Data source: Department of the Environment and Energy, Australia](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)]
+```{r search_gran, echo = TRUE}
+```
+
+---
+
+## Create any temporal granularity with `create_gran()`
+
+```{r create_gran, echo = TRUE}
+```
+
+---
+
+## Get all possible harmonies with `harmony()`
+
+```{r harmony, echo = TRUE}
+```
+
+---
+
+## Explore probability distribution across bivariate temporal granularities with `granplot()`
+
+```{r granplotoverlay}
+```
+
+---
+
+```{r granplot}
+```
+
+---
+
+## Another example: Cricket data of Indian Premier League
+
+<small><i>Data source</i></small>: [<small><i>Cricsheet</i></small>](http://cricsheet.org/) ,  [<small><i>Kaggle</i></small>](https://www.kaggle.com/josephgpinto/ipl-data-analysis/data)
+
+```{r cricket}
+```
+
+---
+
+
+## Difference in strategy between two top teams
+
+
+```{r cricketex}
+```

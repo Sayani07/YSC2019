@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title>Visualisation and analysis of probability distributions of variables defined on spatio-temporal granularities</title>
+    <title>Exploring probability distributions for bivariate temporal granularities</title>
     <meta charset="utf-8" />
     <meta name="author" content="  Sayani Gupta     @Sayani07" />
     <link href="index_files/remark-css/default.css" rel="stylesheet" />
@@ -11,12 +11,11 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Visualisation and analysis of probability distributions of variables defined on spatio-temporal granularities
+# Exploring probability distributions for bivariate temporal granularities
 ### <br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> <span class="citation">@Sayani07</span>
 ### <font size="5"> Department of Econometrics and Business Statistics <br> February 28, 2019
 
 ---
-
 
 
 
@@ -84,11 +83,30 @@ Smart meters record electricity usage (per kWh) every 30 minutes and send this i
 - Lowering metering and connection fees 
 - Drawing insights into when customer is home, or sleeping, or even what appliances they are using based on usage figures
 - Rewarding customers for mindful usage
+
+---
+
+background-image: url("images/problem.png")
+class: hide-slide-number
+
 ---
 
 
+## &lt;span style="color:DarkBlue"&gt;  Exploratory Data Analysis
 
-## Decontructing temporal data
+Developed by **John Tukey** as a way of _*systematically*_ using the tools of statistics on a problem before a hypotheses about the data were developed.
+
+## Goal
+
+&lt;span style="color:Black"&gt; Provide a platform to &lt;span style="color:Crimson"&gt; systematically explore &lt;span style="color:Black"&gt;  multiple perspectives of &lt;span style="color:Crimson"&gt; temporal data &lt;span style="color:Black"&gt; across &lt;span style="color:Crimson"&gt; deconstructed time &lt;span style="color:Black"&gt; to
+explore behaviors or summarize the behavior through &lt;span style="color:Crimson"&gt; visualizing probability distributions &lt;span style="color:Black"&gt; to find
+ 
+- regular patterns
+- anomalies 
+
+---
+
+## Decontructing time
 
 &lt;span style="color:#c33c3c"&gt; **Granularities** : &lt;span style="color:Black"&gt;  Abstractions of time based on Calendar
 &lt;br&gt;
@@ -125,25 +143,17 @@ Smart meters record electricity usage (per kWh) every 30 minutes and send this i
 
 ---
 
-## &lt;span style="color:DarkBlue"&gt;  Exploratory Data Analysis?
 
-Developed by **John Tukey** as a way of _*systematically*_ using the tools of statistics on a problem before a hypotheses about the data were developed
+## &lt;span style="color:DarkBlue"&gt; Visualizing probability distributions
 
-###  How can it help?
 
- - Big problem broken into pieces by focusing on subsets
-&lt;br&gt;
- - Visualization of &lt;span style="color:Crimson"&gt; probability distributions &lt;span style="color:Black"&gt; at varying resolutions of time
-&lt;br&gt;
- - Find regular patterns/ anomalies or pockets of similar behavior
+
+ - Breaking down the big problem
+
+
+Visualize the  &lt;large&gt;&lt;span style="color:Crimson"&gt;probability distribution  &lt;span style="color:Black"&gt;&lt;/large&gt; of the variable across &lt;large&gt; &lt;span style="color:Crimson"&gt;&lt;/large&gt; bivariate granularities &lt;span style="color:black"&gt;. 
 
 ---
-
-## &lt;span style="color:DarkBlue"&gt; Breaking down the big problem
-
-
-Visualize the distribution of the variable across bivariate granularities. 
-
 
 ## Still problems?
 
@@ -157,13 +167,18 @@ Visualize the distribution of the variable across bivariate granularities.
 
 ---
 
-## Package gravitas 
+class: center,middle
 
-granularity visualisation of time series data 
+# &lt;span style="color:MediumVioletRed"&gt; Package gravitas &lt;/span&gt;
+
+##   granularity visualisation of time series data 
+
 
 ---
 
-# An example: electricity consumption
+## An example : Electricity smart meter data
+
+&lt;i&gt;&lt;small&gt;Data source&lt;/i&gt;&lt;/small&gt; : [&lt;small&gt;&lt;i&gt;Department of the Environment and Energy, Australia&lt;/i&gt;&lt;/small&gt;](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)
 
 
 ```
@@ -181,14 +196,150 @@ granularity visualisation of time series data
 #&gt; #   net_generation_kwh &lt;dbl&gt;, other_kwh &lt;dbl&gt;
 ```
 
-.center[
-.card[.large[key:households]]  
-.card[.large[interval: 30 minutes]]  
-.card[.large[index: Time]]  
-.card[.large[measured variable: Demand]]  
-]
+### Get set of possible temporal granularities with `search_gran()`
 
-.footnote[[Data source: Department of the Environment and Energy, Australia](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)]
+
+```r
+smart_meter50 %&gt;%
+  dynamic_search_gran(lowest_unit = "hhour", highest_unit =  "month")
+```
+
+```
+#&gt;  [1] "hhour_hour"      "hhour_day"       "hhour_week"     
+#&gt;  [4] "hhour_fortnight" "hhour_month"     "hour_day"       
+#&gt;  [7] "hour_week"       "hour_fortnight"  "hour_month"     
+#&gt; [10] "day_week"        "day_fortnight"   "day_month"      
+#&gt; [13] "week_fortnight"  "week_month"      "fortnight_month"
+```
+
+---
+
+## Create any temporal granularity with `create_gran()`
+
+
+```r
+smart_meter50 %&gt;%
+  dynamic_create_gran("hour_week") %&gt;% select(customer_id, 
+                                              reading_datetime,
+                                              hour_week,
+                                              general_supply_kwh, 
+                                              everything())
+```
+
+```
+#&gt; # A tsibble: 1,450,232 x 9 [30m] &lt;UTC&gt;
+#&gt; # Key:       customer_id [50]
+#&gt;   customer_id reading_datetime    hour_week
+#&gt;   &lt;chr&gt;       &lt;dttm&gt;              &lt;fct&gt;    
+#&gt; 1 10006414    2012-02-10 08:00:00 128      
+#&gt; 2 10006414    2012-02-10 08:30:00 128      
+#&gt; 3 10006414    2012-02-10 09:00:00 129      
+#&gt; 4 10006414    2012-02-10 09:30:00 129      
+#&gt; # … with 1.45e+06 more rows, and 6 more variables:
+#&gt; #   general_supply_kwh &lt;dbl&gt;, event_key &lt;dbl&gt;,
+#&gt; #   controlled_load_kwh &lt;dbl&gt;,
+#&gt; #   gross_generation_kwh &lt;dbl&gt;,
+#&gt; #   net_generation_kwh &lt;dbl&gt;, other_kwh &lt;dbl&gt;
+```
+
+---
+
+## Get all possible harmonies with `harmony()`
+
+
+```r
+smart_meter50 %&gt;% 
+  harmony(ugran = "month",
+          lgran = "hhour",
+          filter_out = c("fortnight", "hhour"))
+```
+
+```
+#&gt; # A tibble: 13 x 4
+#&gt;    facet_variable x_variable facet_levels x_levels
+#&gt;    &lt;chr&gt;          &lt;chr&gt;             &lt;int&gt;    &lt;int&gt;
+#&gt;  1 day_week       hour_day              7       24
+#&gt;  2 day_month      hour_day             31       24
+#&gt;  3 week_month     hour_day              5       24
+#&gt;  4 day_month      hour_week            31      168
+#&gt;  5 week_month     hour_week             5      168
+#&gt;  6 day_week       hour_month            7      744
+#&gt;  7 hour_day       day_week             24        7
+#&gt;  8 day_month      day_week             31        7
+#&gt;  9 week_month     day_week              5        7
+#&gt; 10 hour_day       day_month            24       31
+#&gt; 11 day_week       day_month             7       31
+#&gt; 12 hour_day       week_month           24        5
+#&gt; 13 day_week       week_month            7        5
+```
+
+---
+
+## Explore probability distribution across bivariate temporal granularities with `granplot()`
+
+&lt;img src="figure/granplotoverlay-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="figure/granplot-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Another example: Cricket data of Indian Premier League
+
+&lt;small&gt;&lt;i&gt;Data source&lt;/i&gt;&lt;/small&gt;: [&lt;small&gt;&lt;i&gt;Cricsheet&lt;/i&gt;&lt;/small&gt;](http://cricsheet.org/) ,  [&lt;small&gt;&lt;i&gt;Kaggle&lt;/i&gt;&lt;/small&gt;](https://www.kaggle.com/josephgpinto/ipl-data-analysis/data)
+
+
+```
+#&gt; Observations: 136,598
+#&gt; Variables: 38
+#&gt; $ season           &lt;dbl&gt; 2008, 2008, 2008, 2008, 200…
+#&gt; $ match_id         &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+#&gt; $ inning           &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+#&gt; $ over             &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 2, 2, …
+#&gt; $ ball             &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 1, 2, …
+#&gt; $ winner           &lt;chr&gt; "Kolkata Knight Riders", "K…
+#&gt; $ total_runs       &lt;dbl&gt; 1, 0, 1, 0, 0, 0, 1, 0, 4, …
+#&gt; $ batting_team     &lt;chr&gt; "Kolkata Knight Riders", "K…
+#&gt; $ bowling_team     &lt;chr&gt; "Royal Challengers Bangalor…
+#&gt; $ batsman          &lt;chr&gt; "SC Ganguly", "BB McCullum"…
+#&gt; $ non_striker      &lt;chr&gt; "BB McCullum", "SC Ganguly"…
+#&gt; $ bowler           &lt;chr&gt; "P Kumar", "P Kumar", "P Ku…
+#&gt; $ is_super_over    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+#&gt; $ wide_runs        &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+#&gt; $ bye_runs         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+#&gt; $ legbye_runs      &lt;dbl&gt; 1, 0, 0, 0, 0, 0, 1, 0, 0, …
+#&gt; $ noball_runs      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+#&gt; $ penalty_runs     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+#&gt; $ batsman_runs     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 4, …
+#&gt; $ extra_runs       &lt;dbl&gt; 1, 0, 1, 0, 0, 0, 1, 0, 0, …
+#&gt; $ player_dismissed &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA,…
+#&gt; $ dismissal_kind   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA,…
+#&gt; $ fielder          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA,…
+#&gt; $ city             &lt;chr&gt; "Bangalore", "Bangalore", "…
+#&gt; $ date             &lt;date&gt; 2008-04-18, 2008-04-18, 20…
+#&gt; $ team1            &lt;chr&gt; "Kolkata Knight Riders", "K…
+#&gt; $ team2            &lt;chr&gt; "Royal Challengers Bangalor…
+#&gt; $ toss_winner      &lt;chr&gt; "Royal Challengers Bangalor…
+#&gt; $ toss_decision    &lt;chr&gt; "field", "field", "field", …
+#&gt; $ result           &lt;chr&gt; "normal", "normal", "normal…
+#&gt; $ dl_applied       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+#&gt; $ win_by_runs      &lt;dbl&gt; 140, 140, 140, 140, 140, 14…
+#&gt; $ win_by_wickets   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+#&gt; $ player_of_match  &lt;chr&gt; "BB McCullum", "BB McCullum…
+#&gt; $ venue            &lt;chr&gt; "M Chinnaswamy Stadium", "M…
+#&gt; $ umpire1          &lt;chr&gt; "Asad Rauf", "Asad Rauf", "…
+#&gt; $ umpire2          &lt;chr&gt; "RE Koertzen", "RE Koertzen…
+#&gt; $ umpire3          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA,…
+```
+
+---
+
+
+## Difference in strategy between two top teams
+
+
+&lt;img src="images/cricketex.gif" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
