@@ -112,21 +112,20 @@ Smart meters record electricity usage (per kWh) every 30 minutes and send this i
 
 .pull-right[
 **Order**  
-
- In Mayan system, the calendar (peridic) was structured as follows: 
-
- - 1 kin = 1 day
- - 1 uinal = 20 kin
- - 1 tun  = 18 uinal
- - 1 katun = 20 tun
- - 1 baktun = 20 katun 
+ 
  
 <span style="color:#c33c3c"> **Single-order-up** <span style="color:Black"> :nested within single level of hierarchy viz. kin_uinal  
 <br>
 <span style="color:#c33c3c"> **Multiple-order-up**<span style="color:Black"> :nested within multiple levels of hierarchy viz. kin-of-tun, uinal-of-katun
 
 
+ In Mayan system, the calendar (periodic) was structured as follows: 
 
+ - 1 kin = 1 day
+ - 1 uinal = 20 kin
+ - 1 tun  = 18 uinal
+ - 1 katun = 20 tun
+ - 1 baktun = 20 katun
 
 ]
 
@@ -164,3 +163,23 @@ Visualize the distribution of the variable across bivariate granularities.
  - Which probability distribution plots to choose in which situation? box, violin, ridge, density, letter value, quantiles and many more.
 
 ---
+
+## Package gravitas 
+
+granularity visualisation of time series data 
+
+---
+
+# An example: electricity consumption
+
+```{r load}
+```
+
+.center[
+.card[.large[key:households]]  
+.card[.large[interval: 30 minutes]]  
+.card[.large[index: Time]]  
+.card[.large[measured variable: Demand]]  
+]
+
+.footnote[[Data source: Department of the Environment and Energy, Australia](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)]
