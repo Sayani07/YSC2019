@@ -61,20 +61,31 @@ smart_meter50   %>%
 
 
 
+
 ##----granplot
-smart_meter50 %>%
-  mutate(Demand = log(general_supply_kwh)) %>% 
-  granplot("day_week", 
-           "hour_day",
-           response = "Demand",
-           plot_type = "quantile", 
-           quantile_prob = c(0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95), overlay = FALSE) +
-          ggtitle("") + 
-  scale_colour_palap_d(palette = "lajolla",
-                                                   begin = 0.5,
-                                                   end = 1, direction = -1) + 
-  scale_x_discrete(breaks = seq(0,23,2)) + 
-  theme_remark()
+
+# p1 = smart_meter50 %>% 
+#   mutate(Demand = general_supply_kwh*10) %>% 
+#   granplot("wknd_wday", 
+#            "hour_day",
+#            response = "Demand",
+#            plot_type = "quantile", 
+#            quantile_prob = c(0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95), overlay = FALSE) +
+#   ggtitle("") + 
+#   scale_colour_palap_d(palette = "lajolla",
+#                        begin = 0.5,
+#                        end = 1, direction = -1) + 
+#   scale_x_discrete(breaks = seq(0,23,2)) + 
+#   theme_remark() 
+# 
+# anim1 <-  p1 + transition_reveal(as.numeric(hour_day)) 
+# 
+# gganimate::animate(anim1, fps = 10, width = 1000, height = 600)
+# 
+# 
+# anim_save("~/Documents/YSc2019/images/palap_quantile.gif")
+
+knitr::include_graphics("images/palap_quantile.gif")
 
 ##----cricket
 
@@ -90,6 +101,7 @@ cricket <- read_rds("~/Documents/paper-gravitas/data/cricket_tsibble.rds") %>%
          everything())
 
 glimpse(cricket)
+
 
 
 
@@ -118,11 +130,14 @@ glimpse(cricket)
 #             plot_type = "lv",
 #             quantile_prob = c(0.1, 0.25, 0.5, 0.75, 0.9))
 # 
-#  anim <-  p + gganimate::transition_states(batting_team)
+
+
+#anim <-  p + gganimate::transition_states(batting_team)+ labs(title = "{closest_state}")
 # 
-# gganimate::animate(anim, fps = 10, width = 1000, height = 600)
-# 
-#  anim_save("~/Documents/YSc2019/images/cricketex.gif")
+#gganimate::animate(anim, fps = 10, width = 1000, height = 600)
+
+
+#anim_save("~/Documents/YSc2019/images/cricketex.gif")
 # 
 
 #

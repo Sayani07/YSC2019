@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="author" content="  Sayani Gupta     @Sayani07" />
     <link href="index_files/remark-css/default.css" rel="stylesheet" />
-    <link rel="stylesheet" href="libs/data_viz_theme.css" type="text/css" />
+    <link rel="stylesheet" href="libs/remark.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -20,12 +20,9 @@ class: center, middle, inverse, title-slide
 
 
 
-# &lt;span style="color:DarkBlue"&gt; Motivation - Electricity smart meter technology 
-
-## &lt;span style="color:DarkBlue"&gt;  Data description (~ 40 billion half hourly observations)
+# &lt;span style="color:DarkBlue"&gt; Motivation - Electricity smart meter technology  (~ 40 billion half hourly observations)
 
 .pull-left[
-
 .center-left[
 - Source
 &lt;br&gt;
@@ -112,33 +109,45 @@ explore behaviors or summarize the behavior through &lt;span style="color:Crimso
 &lt;br&gt;
 
 .pull-left[
-**Arrangement**
-- &lt;span style="color:#c33c3c"&gt; **Linear** : &lt;span style="color:Black"&gt; days, weeks, months, years
-- &lt;span style="color:#c33c3c"&gt; **Circular** : &lt;span style="color:Black"&gt; day-of-week, month-of-year or hour-of-day
-- &lt;span style="color:#c33c3c"&gt; **Aperiodic** : &lt;span style="color:Black"&gt; day-of-month, week-of-month
+**Arrangement**  
+&lt;span style="color:#c33c3c"&gt;&lt;i&gt; Linear&lt;/i&gt; : &lt;span style="color:Black"&gt; days, weeks, months, years  
+&lt;span style="color:#c33c3c"&gt; &lt;i&gt;Circular&lt;/i&gt; : &lt;span style="color:Black"&gt; day-of-week, month-of-year or hour-of-day  
+&lt;span style="color:#c33c3c"&gt; &lt;i&gt;Aperiodic&lt;/i&gt; : &lt;span style="color:Black"&gt; day-of-month, week-of-month  
 
-&lt;span style="color:black"&gt;&lt;i&gt; Examples from Gregorian calendar &lt;/i&gt;
+
+**Order**  
+&lt;span style="color:#c33c3c"&gt; &lt;i&gt;Single-order-up&lt;/i&gt; &lt;span style="color:Black"&gt; :nested within single level of hierarchy viz. kin_uinal  
+&lt;br&gt;
+&lt;span style="color:#c33c3c"&gt; &lt;i&gt;Multiple-order-up&lt;/i&gt; &lt;span style="color:Black"&gt; :nested within multiple levels of hierarchy viz. kin-of-tun, uinal-of-katun
+
+ &lt;span style="color:Crimson"&gt;
+ &lt;small&gt;
+ In Mayan system, the calendar (periodic) was structured as follows: 
+
+&lt;span style="color:Crimson"&gt;&lt;i&gt;
+1 kin = 1 day  
+1 uinal = 20 kin  
+1 tun  = 18 uinal  
+1 katun = 20 tun  
+1 baktun = 20 katun  
+&lt;/i&gt;
+&lt;/small&gt;
+
 ]
 
 
 .pull-right[
-**Order**  
- 
- 
-&lt;span style="color:#c33c3c"&gt; **Single-order-up** &lt;span style="color:Black"&gt; :nested within single level of hierarchy viz. kin_uinal  
-&lt;br&gt;
-&lt;span style="color:#c33c3c"&gt; **Multiple-order-up**&lt;span style="color:Black"&gt; :nested within multiple levels of hierarchy viz. kin-of-tun, uinal-of-katun
 
+.center[
+## &lt;large&gt;????&lt;/large&gt;
 
- In Mayan system, the calendar (periodic) was structured as follows: 
-
- - 1 kin = 1 day
- - 1 uinal = 20 kin
- - 1 tun  = 18 uinal
- - 1 katun = 20 tun
- - 1 baktun = 20 katun
-
-]
+&lt;span style="color:Black"&gt;
+ - &lt;large&gt;How can I compute any granularity given the calendar or hierarchy table?&lt;/large&gt;
+ &lt;br&gt;
+ - &lt;large&gt;What are the exhaustive list of granularities I can look at?&lt;/large&gt;
+ &lt;br&gt;
+ ]
+ ]
 
 
 ---
@@ -148,22 +157,44 @@ explore behaviors or summarize the behavior through &lt;span style="color:Crimso
 
 
 
- - Breaking down the big problem
+Breaking down the big problem -  only bivariate granularities.
 
 
-Visualize the  &lt;large&gt;&lt;span style="color:Crimson"&gt;probability distribution  &lt;span style="color:Black"&gt;&lt;/large&gt; of the variable across &lt;large&gt; &lt;span style="color:Crimson"&gt;&lt;/large&gt; bivariate granularities &lt;span style="color:black"&gt;. 
 
----
+&lt;!-- Visualize the  &lt;large&gt;&lt;span style="color:Crimson"&gt;probability distribution  &lt;span style="color:Black"&gt;&lt;/large&gt; of the variable across &lt;large&gt; &lt;span style="color:Crimson"&gt;&lt;/large&gt; bivariate granularities &lt;span style="color:black"&gt;.  --&gt;
 
-## Still problems?
 
- - How can I compute any granularity given the calendar or hierarchy table?
+.pull-left[
+
+## Interaction of bivariate granularities
+- harmonies
+- clashes
+
+
+## Types of statistical distribution plots 
+- box 
+- violin
+- ridge
+- density
+- letter value
+- quantiles  
+]
+
+.pull-right[
+.center[
+## &lt;large&gt;????&lt;/large&gt;
+&lt;span style="color:Black"&gt;
+ - Which bivariate granularities are compatible with each other for visualisation?
  &lt;br&gt;
- - What are the exhaustive list of bivariate granularities I can look at?
+ - Is it appropriate to draw distribution plots given the number of observations?
  &lt;br&gt;
- - Which bivariate granularities amongst them are compatible with each other for visualisation?
- &lt;br&gt;
- - Which probability distribution plots to choose in which situation? box, violin, ridge, density, letter value, quantiles and many more.
+ - Which probability distribution plots to choose to get the best of exploration? 
+ ]
+ ]
+
+
+
+
 
 ---
 
@@ -281,7 +312,7 @@ smart_meter50 %&gt;%
 
 ---
 
-&lt;img src="figure/granplot-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/palap_quantile.gif" style="display: block; margin: auto;" /&gt;
 
 ---
 
