@@ -16,3 +16,8 @@ gdtools
 palap
 kableExtra
 gganimate
+xaringanthemer
+lubridate
+ggridges
+magrittr
+ggpubr
