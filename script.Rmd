@@ -1,6 +1,6 @@
 ---
 title: "My presentation script"
-author: "Visayans Gupta"
+author: "Sayani Gupta"
 date: "29/09/2019"
 output: pdf_document
 ---
@@ -111,7 +111,7 @@ the energy spikes up pretty steeply for the top 10% households after they get up
 Also, there are two peaks in the morning for weekends unlike that in weekdays implying they have different times of waking up.
 
 
-Insights like these can be drawn about the behavior of the households which wouldn't be obvious if we plot a summary statistic or see overall usage. 
+Insights like these can be drawn about the behavior of the households which were not obvious if we plot a summary statistic or see overall usage. 
 
 ## Slide 24
 
