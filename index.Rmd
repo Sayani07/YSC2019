@@ -388,7 +388,7 @@ class: center,middle
 
 ## Set of harmonies
 
-### <span style="color:Orange"> -----> <large>  Good news! Only 13 out `r length(combn(13,2))` are harmonies </large>
+### <span style="color:Orange"><large>  Good news! Only 13 out `r length(combn(13,2))` are harmonies </large>
 
 ```{r harmony}
 ```

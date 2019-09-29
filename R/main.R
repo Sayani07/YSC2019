@@ -111,7 +111,7 @@ cust4 <- smart_meter50 %>% distinct(customer_id) %>% head(10)
 smart_meter50 %>% 
   harmony(ugran = "month",
           lgran = "hhour",
-          filter_out = c("fortnight", "hhour"))
+          filter_out = c("fortnight", "hhour")) %>% knitr::kable()
 
 ##----granplotoverlay1
 
@@ -281,7 +281,7 @@ knitr::include_graphics("images/circular.png")
 
 
 ##----calendar
-knitr::include_graphics("images/calendar.png")
+knitr::include_graphics("images/calendar_new.jpg")
 
 
 ##----box
@@ -355,4 +355,17 @@ p5
 #----clash
 
 knitr::include_graphics("images/clash.png")
+
+
+##----di
+
+knitr::include_graphics("images/di.jpg")
+
+
+##----rob
+
+knitr::include_graphics("images/rob.jpg")
+
+
+
 

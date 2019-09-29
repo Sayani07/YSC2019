@@ -137,7 +137,7 @@ The key terms are decontructing time and visualizing distribution. In the next c
 &lt;br&gt;
 &lt;i&gt;**Multiple-order-up**&lt;/i&gt; second-of-hour, hour-of-week  
 
-&lt;img src="images/calendar.png" width="100%" height="380" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/calendar_new.jpg" width="100%" height="380" style="display: block; margin: auto;" /&gt;
 
  
 ???
@@ -369,27 +369,98 @@ class: center,middle
 
 ## Set of harmonies
 
-### &lt;span style="color:Orange"&gt; -----&gt; &lt;large&gt;  Good news! Only 13 out 156 are harmonies &lt;/large&gt;
+### &lt;span style="color:Orange"&gt;&lt;large&gt;  Good news! Only 13 out 156 are harmonies &lt;/large&gt;
 
-
-```
-#&gt; # A tibble: 13 x 4
-#&gt;    facet_variable x_variable facet_levels x_levels
-#&gt;    &lt;chr&gt;          &lt;chr&gt;             &lt;int&gt;    &lt;int&gt;
-#&gt;  1 day_week       hour_day              7       24
-#&gt;  2 day_month      hour_day             31       24
-#&gt;  3 week_month     hour_day              5       24
-#&gt;  4 day_month      hour_week            31      168
-#&gt;  5 week_month     hour_week             5      168
-#&gt;  6 day_week       hour_month            7      744
-#&gt;  7 hour_day       day_week             24        7
-#&gt;  8 day_month      day_week             31        7
-#&gt;  9 week_month     day_week              5        7
-#&gt; 10 hour_day       day_month            24       31
-#&gt; 11 day_week       day_month             7       31
-#&gt; 12 hour_day       week_month           24        5
-#&gt; 13 day_week       week_month            7        5
-```
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; facet_variable &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; x_variable &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; facet_levels &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; x_levels &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_week &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 168 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_week &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 168 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_month &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 744 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 ---
 
