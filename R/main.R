@@ -12,7 +12,7 @@ library(ggpubr)
 #remotes::install_github("njtierney/palap")
 library(palap)
 
-smart_meter50 <- read_rds("~/Documents/paper-gravitas/data/sm_cust50.rds")%>%  
+smart_meter50 <- read_rds("data/sm_cust50.rds")%>%  
   select(customer_id, 
          reading_datetime,
          general_supply_kwh, 
@@ -215,7 +215,7 @@ knitr::include_graphics("images/palap_quantile.gif")
 ##----cricket
 
 
-cricket <- read_rds("~/Documents/paper-gravitas/data/cricket_tsibble.rds")%>%  
+cricket <- read_rds("data/cricket_tsibble.rds")%>%  
   select(season, 
          match_id,
          inning,
