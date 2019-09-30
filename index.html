@@ -105,22 +105,22 @@ The key terms are decontructing time and visualizing distribution. In the next c
 ---
 
 #  Decontructing time: Arrangement
-
-### **Granularities**   abstractions of time based on calendar
 .pull-left[
-#### &lt;i&gt; **Linear**&lt;/i&gt;  days, weeks, months, years  
+#### **Granularities**  
+abstractions of time based on calendar
 &lt;br&gt;
 &lt;br&gt;
-#### &lt;i&gt; **Circular** &lt;/i&gt;   day-of-week, month-of-year or hour-of-day  
+ -  &lt;i&gt; **Linear**&lt;/i&gt;  days, weeks, months, years  
 &lt;br&gt;
+ -  &lt;i&gt; **Circular** &lt;/i&gt;   day-of-week, month-of-year or hour-of-day  
 &lt;br&gt;
-#### &lt;i&gt; **Aperiodic** &lt;/i&gt;  day-of-month, week-of-month  
+ -  &lt;i&gt; **Aperiodic** &lt;/i&gt;  day-of-month, week-of-month  
 ]
 
 .pull-right[
-&lt;img src="images/linear-time.png" width="120%" height="150%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/linear-time.png" width="260%" height="150%" style="display: block; margin: auto;" /&gt;
 &lt;br&gt;
-&lt;img src="images/circular.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/circular.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -190,42 +190,43 @@ Breaking down the big problem -  two granularities at a time.
 ---
 
 
-# R package: gravitas
+# R package: **gravitas**
 
 .center[
-
-## Computation
+### Computation
+--- 
 
 .left[
-- Compute any granularity given the hierarchy structure? &lt;span style="color:Red"&gt; -----&gt; `create_gran`
+- Compute any granularity? &lt;span style="color:Red"&gt;`create_gran`
  &lt;br&gt;
  &lt;br&gt;
  
-- Exhaustive list of granularities to explore?&lt;span style="color:Red"&gt; -----&gt; `search_gran`
+- Exhaustive list of granularities to explore? &lt;span style="color:Red"&gt; `search_gran`
  &lt;br&gt;
        ]
 
 ]
  
 .pull-left[
-
- ## Interaction
-
-- Check if bivariate granularities intended for plotting are harmonies/clashes? &lt;span style="color:Red"&gt; -----&gt; `is.harmony`
+ ### Interaction
+ --- 
+ 
+- Check if bivariate granularities are harmonies/clashes? &lt;span style="color:Red"&gt;  `is.harmony`
 &lt;br&gt;
 &lt;br&gt;
-- List of harmonies to explore? &lt;span style="color:Red"&gt;   -----&gt; `harmony`
+- List of harmonies to explore? &lt;span style="color:Red"&gt; `harmony`
 &lt;br&gt;
  ]
 
 .pull-right[
+### Visualization
+--- 
 
-## Visualization
-
-- Best probability distribution plot for harmonies to explore  
- &lt;span style="color:Red"&gt; -----&gt; `granplot`
-&lt;br&gt;    
-- Sufficient number of observations for plotting distribution?  &lt;span style="color:Red"&gt; -----&gt; `gran_obs`
+- Best probability distribution plot for harmonies? 
+ &lt;span style="color:Red"&gt; `granplot`
+&lt;br&gt;
+&lt;br&gt;
+- Sufficient observations?  &lt;span style="color:Red"&gt;  `gran_obs`
 
  ]
 

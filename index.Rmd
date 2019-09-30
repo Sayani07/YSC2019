@@ -126,23 +126,23 @@ The key terms are decontructing time and visualizing distribution. In the next c
 ---
 
 #  Decontructing time: Arrangement
-
-### **Granularities**   abstractions of time based on calendar
 .pull-left[
-#### <i> **Linear**</i>  days, weeks, months, years  
+#### **Granularities**  
+abstractions of time based on calendar
 <br>
 <br>
-#### <i> **Circular** </i>   day-of-week, month-of-year or hour-of-day  
+ -  <i> **Linear**</i>  days, weeks, months, years  
 <br>
+ -  <i> **Circular** </i>   day-of-week, month-of-year or hour-of-day  
 <br>
-#### <i> **Aperiodic** </i>  day-of-month, week-of-month  
+ -  <i> **Aperiodic** </i>  day-of-month, week-of-month  
 ]
 
 .pull-right[
-```{r lineartime, out.width="120%", out.height="150%"}
+```{r lineartime, out.width="260%", out.height="150%"}
 ```
 <br>
-```{r circulartime, out.width="70%"}
+```{r circulartime, out.width = "100%"}
 ```
 
 
@@ -218,42 +218,43 @@ Breaking down the big problem -  two granularities at a time.
 ---
 
 
-# R package: gravitas
+# R package: **gravitas**
 
 .center[
-
-## Computation
+### Computation
+--- 
 
 .left[
-- Compute any granularity given the hierarchy structure? <span style="color:Red"> -----> `create_gran`
+- Compute any granularity? <span style="color:Red">`create_gran`
  <br>
  <br>
  
-- Exhaustive list of granularities to explore?<span style="color:Red"> -----> `search_gran`
+- Exhaustive list of granularities to explore? <span style="color:Red"> `search_gran`
  <br>
        ]
 
 ]
  
 .pull-left[
-
- ## Interaction
-
-- Check if bivariate granularities intended for plotting are harmonies/clashes? <span style="color:Red"> -----> `is.harmony`
+ ### Interaction
+ --- 
+ 
+- Check if bivariate granularities are harmonies/clashes? <span style="color:Red">  `is.harmony`
 <br>
 <br>
-- List of harmonies to explore? <span style="color:Red">   -----> `harmony`
+- List of harmonies to explore? <span style="color:Red"> `harmony`
 <br>
  ]
 
 .pull-right[
+### Visualization
+--- 
 
-## Visualization
-
-- Best probability distribution plot for harmonies to explore  
- <span style="color:Red"> -----> `granplot`
-<br>    
-- Sufficient number of observations for plotting distribution?  <span style="color:Red"> -----> `gran_obs`
+- Best probability distribution plot for harmonies? 
+ <span style="color:Red"> `granplot`
+<br>
+<br>
+- Sufficient observations?  <span style="color:Red">  `gran_obs`
 
  ]
 

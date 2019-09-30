@@ -305,7 +305,7 @@ plv <- smart_meter50 %>%
   ylab("") + xlab("") + theme(legend.position = "None") 
 
 
-mpg <- mpg %>% filter (class %in% c("compact", "midsize", "suv","minivan", "pickup")) %>% 
+mpg <- mpg %>% filter (class %in% c("compact", "midsize", "suv","minivan")) %>% 
   mutate(cls = 
            case_when(
              class == "compact" ~ "A",
