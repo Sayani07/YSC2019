@@ -123,7 +123,7 @@ smart_meter50   %>%
            quantile_prob = c(0.25, 0.5, 0.75),
            overlay = TRUE) + ggtitle("") +
   scale_x_discrete(breaks = seq(0,23,2)) + 
-  theme_remark()
+  theme_remark() 
 
 
 ##----granplotoverlay2
@@ -304,14 +304,16 @@ plv <- smart_meter50 %>%
   geom_lv(aes(fill = ..LV..), outlier.colour = "red", outlier.shape = 1) +
   ylab("") + xlab("") + theme(legend.position = "None") 
 
-pridge <- smart_meter50 %>% 
-  mutate(Demand = general_supply_kwh*100) %>% 
-  create_gran("hour_day") %>% 
-  filter(hour_day %in% c(20, 10, 2, 15)) %>% 
-  ggplot(aes(x = Demand, y = hour_day)) + 
-  ggridges::geom_density_ridges()  + 
-  ylab("") + 
-  xlab("")
+
+mpg <- mpg %>% filter (class %in% c("compact", "midsize", "suv","minivan", "pickup")) %>% 
+  mutate(cls = 
+           case_when(
+             class == "compact" ~ "A",
+             class == "midsize" ~ "B",
+             class == "suv" ~ "C",
+             class == "minivan"  ~ "D"))
+
+pridge <-  ggplot(mpg, aes( hwy, cls)) + geom_density_ridges2()+  xlab("") + ylab("")
 
 
  p4_quantile <- smart_meter50 %>% 
@@ -328,10 +330,10 @@ pridge <- smart_meter50 %>%
     )
   })
   
-  pquant <- p4_quantile %>% ggplot(aes(x = hour_day, y = Value, group=Quantile,  col = as.factor(Quantile))) + geom_line() +   xlab("") + ylab("") + theme(legend.position = "None") + scale_color_brewer(palette = "Dark2") +   ylab("") + xlab("")
+  pquant <- p4_quantile %>% ggplot(aes(x = hour_day, y = Value, group=Quantile,  col = as.factor(Quantile))) + geom_line() +   xlab("") + ylab("") + theme(legend.position = "None") + scale_color_brewer(palette = "Dark2") +   ylab("") + xlab("") + scale_x_discrete(breaks = seq(0, 23, 5))
   
   
-ggarrange(pbox, pviolin, plv, pridge, pquant, nrow = 1, ncol =5, labels = c("box", "violin", "lv", "ridge", "quantile"))
+ggarrange(pbox, pviolin, plv, pridge, pquant, nrow = 1, ncol =5, labels = c("box", "violin", "letter-value", "ridge", "quantile"))
 
 
 ##----box

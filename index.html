@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="author" content="  Sayani Gupta     @Sayani07" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="libs/font-awesome/css/fontawesome-all.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -37,7 +38,6 @@ class: center, middle, inverse, title-slide
 - Spread: 14K (approx.) households based in Newcastle, New South Wales, and parts of Sydney
 &lt;br&gt;
 &lt;br&gt;
-- Type: Spatio - Temporal Data
 
 ???
 Smart meters record electricity usage (per kWh) every 30 minutes and send this information to the electricity retailer for billing
@@ -91,9 +91,9 @@ Well, there can be numerous ways to analyse this data! But I was interested in a
 class: center,middle
 
 
-##  &lt;span style="color: Crimson"&gt; Problem:  &lt;span style="color:#FFDAB9"&gt; How do we systematically explore large quantities of temporal data across different deconstructions of time (half-hour, day, type of day, year) to find regular patterns or anomalies in behaviour? 
+##  **Problem** :  &lt;span style="color:#FFDAB9"&gt; How do we systematically explore large quantities of temporal data across different deconstructions of time (half-hour, day, type of day, year) to find regular patterns or anomalies in behaviour? 
 
-## &lt;span style="color:Crimson"&gt; Solution: &lt;span style="color:#FFDAB9"&gt; Visualize probability distributions over different time granularities.
+## **Solution** : &lt;span style="color:#FFDAB9"&gt; Visualize probability distributions over different time granularities.
 
 ???
 
@@ -106,25 +106,18 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 #  Decontructing time: Arrangement
 
- **Granularities**   Abstractions of time based on calendar
+### **Granularities**   abstractions of time based on calendar
 .pull-left[
-
-&lt;i&gt; **Linear**&lt;/i&gt;  days, weeks, months, years  
+#### &lt;i&gt; **Linear**&lt;/i&gt;  days, weeks, months, years  
 &lt;br&gt;
 &lt;br&gt;
+#### &lt;i&gt; **Circular** &lt;/i&gt;   day-of-week, month-of-year or hour-of-day  
 &lt;br&gt;
 &lt;br&gt;
-&lt;br&gt;
-&lt;i&gt; **Circular** &lt;/i&gt;   day-of-week, month-of-year or hour-of-day  
-&lt;br&gt;
-&lt;i&gt; **Aperiodic** &lt;/i&gt;  day-of-month, week-of-month  
-
-
-
+#### &lt;i&gt; **Aperiodic** &lt;/i&gt;  day-of-month, week-of-month  
 ]
 
 .pull-right[
-
 &lt;img src="images/linear-time.png" width="120%" height="150%" style="display: block; margin: auto;" /&gt;
 &lt;br&gt;
 &lt;img src="images/circular.png" width="70%" style="display: block; margin: auto;" /&gt;
@@ -143,37 +136,40 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 &lt;img src="images/calendar_new.jpg" width="100%" height="380" style="display: block; margin: auto;" /&gt;
 
- 
-???
-
-The Mayan calendar or Haab has 365 days made up of 18 months of 20 days each, which adds up to 360 days. The remaining five days at the end of the year is an unlucky, dangerous time when Mayans stayed home and neglected all activities to avoid disaster. Thus the Mayan calendar is structured as follows and given this hierarchy we can talk about single and multiple order up granularities. 
-
-
- &lt;span style="color:Crimson"&gt;
- &lt;small&gt;
- In Mayan system, the calendar (periodic) was structured as follows: 
-
-&lt;span style="color:Crimson"&gt;&lt;i&gt;
-1 kin = 1 day  
-1 uinal = 20 kin  
-1 tun  = 18 uinal  
-1 katun = 20 tun  
-1 baktun = 20 katun  
-&lt;/i&gt;
-&lt;/small&gt;
 
 ---
-
-class: center,middle
 
 # Computation of granularities
 
+`\(z\)`       : index of a tsibble  
+&lt;br&gt;
+`\(x\)`, `\(y\)`  : two units in the hierarchy table with  `\(order(x) &lt;  order(y)\)`  
+&lt;br&gt;
+`\(f(x, y)\)` : accessor function for computing the granularity  
+&lt;br&gt;
+`\(c(x, y)\)` : a constant which relates x and y  
+&lt;br&gt;
+
+#### **Single-order-up**
+`$$f(x, y) = \lfloor z/c(z,x) \rfloor\mod c(x,y)$$` where `\(y = x+1\)`
+
+
+#### **Multiple-order-up**
+
+
+`\begin{split}
+f(x,y) &amp; = \sum_{i=0}^{order(y) - order(x) - 1} c(x, x+i)(f(x
+  +i, x+i+1) - 1)\\
+\end{split}`
 
 
 ---
 
 
-## Interaction of bivariate granularities -  harmonies &amp; clashes
+## Interaction of bivariate granularities
+
+**Harmonies** : pairs of granularities that aid exploratory data analysis  
+**Clashes**   : pairs leading to structurally empty sets  
 
 &lt;img src="images/clash.png" width="100%" style="display: block; margin: auto;" /&gt;
 
@@ -193,38 +189,8 @@ Breaking down the big problem -  two granularities at a time.
 
 ---
 
-class: center,middle
 
-# Challenges : Visualization of granularities
-
- &lt;br&gt;
-
-### Best probability distribution plot for harmonies to explore patterns and anomalies.
-&lt;br&gt;
-&lt;br&gt;
-### Sufficient number of observations for plotting distribution?
-
----
-
-
-
-
----
-
-class: center,middle
-
-# Challenges : Interaction of granularities
- &lt;br&gt;
-### Check if bivariate granularities intended for plotting are harmonies/clashes?
-&lt;br&gt;
-&lt;br&gt;
-### List of harmonies to explore?
-
----
-
-
-# Solutions
-
+# R package: gravitas
 
 .center[
 
@@ -485,25 +451,19 @@ class: center, middle
 ### More Information
 
 Package : https://github.com/Sayani07/gravitas  
-Slides:
+Slides: https://sayani07.netlify.com/talk/ysc2019/
 
 ### With special thanks to 
 
 .pull-left[
-### Supervisors
-&lt;br&gt;
-&lt;large&gt;Professor Rob J Hyndman&lt;/large&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;large&gt;Professor Dianne Cook&lt;/large&gt;  
-&lt;br&gt;
-&lt;br&gt;
 
-
+#### &lt;span style="color: White"&gt; Supervisors &lt;span style="color: Crimson"&gt; Professor Rob J Hyndman &lt;span style="color: White"&gt;  &amp;  &lt;span style="color: Crimson"&gt;  Professor Dianne Cook
+&lt;br&gt;
+#### &lt;span style="color: White"&gt; Slides created with &lt;span style="color: Crimson"&gt;&lt;i&gt; Rmarkdown, knitr, xaringan, xaringanthemer&lt;/i&gt;
 ]
 
 .pull-right[
-### NUMBATS
+### &lt;span style="color: White"&gt; NUMBATS
 &lt;br&gt;
 &lt;img src="images/Numbats.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]

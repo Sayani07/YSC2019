@@ -5,7 +5,7 @@ author: "<br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'>
 date: <font size="5"> Young Statisticians Conference <br> October 2, 2019
 output:
   xaringan::moon_reader:
-    css: ["xaringan-themer.css"]
+    css: ["xaringan-themer.css", "libs/font-awesome/css/fontawesome-all.css"]
     self_contained: false
     nature:
       ratio: 4:3
@@ -55,7 +55,6 @@ solarized_dark(
 - Spread: 14K (approx.) households based in Newcastle, New South Wales, and parts of Sydney
 <br>
 <br>
-- Type: Spatio - Temporal Data
 
 ???
 Smart meters record electricity usage (per kWh) every 30 minutes and send this information to the electricity retailer for billing
@@ -113,9 +112,9 @@ Well, there can be numerous ways to analyse this data! But I was interested in a
 class: center,middle
 
 
-##  <span style="color: Crimson"> Problem:  <span style="color:#FFDAB9"> How do we systematically explore large quantities of temporal data across different deconstructions of time (half-hour, day, type of day, year) to find regular patterns or anomalies in behaviour? 
+##  **Problem** :  <span style="color:#FFDAB9"> How do we systematically explore large quantities of temporal data across different deconstructions of time (half-hour, day, type of day, year) to find regular patterns or anomalies in behaviour? 
 
-## <span style="color:Crimson"> Solution: <span style="color:#FFDAB9"> Visualize probability distributions over different time granularities.
+## **Solution** : <span style="color:#FFDAB9"> Visualize probability distributions over different time granularities.
 
 ???
 
@@ -128,24 +127,18 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 #  Decontructing time: Arrangement
 
- **Granularities**   Abstractions of time based on calendar
+### **Granularities**   abstractions of time based on calendar
 .pull-left[
-
-<i> **Linear**</i>  days, weeks, months, years  
+#### <i> **Linear**</i>  days, weeks, months, years  
 <br>
 <br>
-<i> **Circular** </i>   day-of-week, month-of-year or hour-of-day  
+#### <i> **Circular** </i>   day-of-week, month-of-year or hour-of-day  
 <br>
 <br>
-<br>
-<i> **Aperiodic** </i>  day-of-month, week-of-month  
-
-
-
+#### <i> **Aperiodic** </i>  day-of-month, week-of-month  
 ]
 
 .pull-right[
-
 ```{r lineartime, out.width="120%", out.height="150%"}
 ```
 <br>
@@ -171,16 +164,37 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 ---
 
-class: center,middle
-
 # Computation of granularities
 
+$z$       : index of a tsibble  
+<br>
+$x$, $y$  : two units in the hierarchy table with  $order(x) <  order(y)$  
+<br>
+$f(x, y)$ : accessor function for computing the granularity  
+<br>
+$c(x, y)$ : a constant which relates x and y  
+<br>
+
+#### **Single-order-up**
+$$f(x, y) = \lfloor z/c(z,x) \rfloor\mod c(x,y)$$ where $y = x+1$
+
+
+#### **Multiple-order-up**
+
+
+\begin{split}
+f(x,y) & = \sum_{i=0}^{order(y) - order(x) - 1} c(x, x+i)(f(x
+  +i, x+i+1) - 1)\\
+\end{split}
 
 
 ---
 
 
-## Interaction of bivariate granularities -  harmonies & clashes
+## Interaction of bivariate granularities
+
+**Harmonies** : pairs of granularities that aid exploratory data analysis  
+**Clashes**   : pairs leading to structurally empty sets  
 
 ```{r clash, out.width="100%"}
 
@@ -203,38 +217,8 @@ Breaking down the big problem -  two granularities at a time.
 
 ---
 
-class: center,middle
 
-# Challenges : Visualization of granularities
-
- <br>
-
-### Best probability distribution plot for harmonies to explore patterns and anomalies.
-<br>
-<br>
-### Sufficient number of observations for plotting distribution?
-
----
-
-
-
-
----
-
-class: center,middle
-
-# Challenges : Interaction of granularities
- <br>
-### Check if bivariate granularities intended for plotting are harmonies/clashes?
-<br>
-<br>
-### List of harmonies to explore?
-
----
-
-
-# Solutions
-
+# R package: gravitas
 
 .center[
 
@@ -350,25 +334,19 @@ class: center, middle
 ### More Information
 
 Package : https://github.com/Sayani07/gravitas  
-Slides:
+Slides: https://sayani07.netlify.com/talk/ysc2019/
 
 ### With special thanks to 
 
 .pull-left[
-### Supervisors
-<br>
-<large>Professor Rob J Hyndman</large>
-<br>
-<br>
-<large>Professor Dianne Cook</large>  
-<br>
-<br>
 
-
+#### <span style="color: White"> Supervisors <span style="color: Crimson"> Professor Rob J Hyndman <span style="color: White">  &  <span style="color: Crimson">  Professor Dianne Cook
+<br>
+#### <span style="color: White"> Slides created with <span style="color: Crimson"><i> Rmarkdown, knitr, xaringan, xaringanthemer</i>
 ]
 
 .pull-right[
-### NUMBATS
+### <span style="color: White"> NUMBATS
 <br>
 ```{r numbats, echo=FALSE, out.width="100%"}
   knitr::include_graphics("images/Numbats.png")
