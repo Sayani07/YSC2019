@@ -75,7 +75,7 @@ Just to give you some perspective I have this data from Department of Energy and
 ---
 <!-- class: hide-slide-number -->
 
-## Visualize the raw data from past to future
+## Visualize the raw data from from 2012 - 2014 for 50 households
 
 ```{r load}
 
@@ -90,7 +90,7 @@ Just to give you some perspective I have this data from Department of Energy and
 
 
 
-## Visualize the periodicities in the data
+## Visualize the periodicities in half-hourly energy usage for 1 household from 2012 to 2014
 
 ```{r motivation5}
 ```
@@ -114,7 +114,9 @@ class: center,middle
 
 # Problem
 
-## <span style="color:#FFDAB9"> Systematically explore <span style="color:#FFDAB9">  multiple perspectives of  temporal data <span style="color:#FFDAB9">across <span style="color:Crimson"> deconstructed time <span style="color:#FFDAB9"> through <span style="color:Crimson"> visualization of probability distributions <span style="color:#FFDAB9"> to find regular patterns or anomalies in behaviors.
+##  <span style="color: Crimson"> Problem:  <span style="color:#FFDAB9"> How do we systematically explore large quantities of temporal data across different deconstructions of time (half-hour, day, type of day, year) to find regular patterns or anomalies in behaviour? 
+
+## <span style="color:Crimson"> Solution: <span style="color:#FFDAB9"> Visualize probability distributions over different time granularities.
 
 ???
 
@@ -127,7 +129,7 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 #  Decontructing time: Arrangement
 
- **Granularities**   Abstractions of time based on Calendar
+ **Granularities**   Abstractions of time based on calendar
 .pull-left[
 
 <i> **Linear**</i>  days, weeks, months, years  
