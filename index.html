@@ -57,7 +57,7 @@ Just to give you some perspective I have this data from Department of Energy and
 ---
 &lt;!-- class: hide-slide-number --&gt;
 
-## Visualize the raw data from past to future
+## Visualize the raw data from from 2012 - 2014 for 50 households
 
 
 
@@ -69,7 +69,7 @@ Just to give you some perspective I have this data from Department of Energy and
 
 
 
-## Visualize the periodicities in the data
+## Visualize the periodicities in half-hourly energy usage for 1 household from 2012 to 2014
 
 &lt;img src="figure/motivation5-1.svg" style="display: block; margin: auto;" /&gt;
 
@@ -90,9 +90,10 @@ Well, there can be numerous ways to analyse this data! But I was interested in a
 
 class: center,middle
 
-# Problem
 
-## &lt;span style="color:#FFDAB9"&gt; Systematically explore &lt;span style="color:#FFDAB9"&gt;  multiple perspectives of  temporal data &lt;span style="color:#FFDAB9"&gt;across &lt;span style="color:Crimson"&gt; deconstructed time &lt;span style="color:#FFDAB9"&gt; through &lt;span style="color:Crimson"&gt; visualization of probability distributions &lt;span style="color:#FFDAB9"&gt; to find regular patterns or anomalies in behaviors.
+##  &lt;span style="color: Crimson"&gt; Problem:  &lt;span style="color:#FFDAB9"&gt; How do we systematically explore large quantities of temporal data across different deconstructions of time (half-hour, day, type of day, year) to find regular patterns or anomalies in behaviour? 
+
+## &lt;span style="color:Crimson"&gt; Solution: &lt;span style="color:#FFDAB9"&gt; Visualize probability distributions over different time granularities.
 
 ???
 
@@ -105,7 +106,7 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 #  Decontructing time: Arrangement
 
- **Granularities**   Abstractions of time based on Calendar
+ **Granularities**   Abstractions of time based on calendar
 .pull-left[
 
 &lt;i&gt; **Linear**&lt;/i&gt;  days, weeks, months, years  
@@ -114,22 +115,25 @@ The key terms are decontructing time and visualizing distribution. In the next c
 &lt;br&gt;
 &lt;br&gt;
 &lt;br&gt;
-&lt;img src="images/linear-time.png" width="100%" height="200" style="display: block; margin: auto;" /&gt;
+&lt;i&gt; **Circular** &lt;/i&gt;   day-of-week, month-of-year or hour-of-day  
+&lt;br&gt;
+&lt;i&gt; **Aperiodic** &lt;/i&gt;  day-of-month, week-of-month  
+
+
 
 ]
 
 .pull-right[
 
-&lt;i&gt; **Circular** &lt;/i&gt;   day-of-week, month-of-year or hour-of-day  
+&lt;img src="images/linear-time.png" width="120%" height="150%" style="display: block; margin: auto;" /&gt;
 &lt;br&gt;
-&lt;i&gt; **Aperiodic** &lt;/i&gt;  day-of-month, week-of-month  
-
-&lt;img src="images/circular.png" width="100%" height="200" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/circular.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
 ]
 
 ---
+
 #  Decontructing time: Order
 
 
@@ -158,42 +162,25 @@ The Mayan calendar or Haab has 365 days made up of 18 months of 20 days each, wh
 &lt;/i&gt;
 &lt;/small&gt;
 
-
 ---
 
 class: center,middle
 
-# Challenges : Computation of granularities
+# Computation of granularities
 
- &lt;br&gt;
 
-### Compute any granularity given the hierarchy structure?
- &lt;br&gt;
- &lt;br&gt;
- 
-### Exhaustive list of granularities to explore?
- &lt;br&gt;
- 
+
 ---
 
-## Visualizing probability distributions
 
+## Interaction of bivariate granularities -  harmonies &amp; clashes
 
-
-Breaking down the big problem -  two granularities at a time.
-
-
-
-#### Types of statistical distribution plots 
-
-&lt;img src="figure/box-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/clash.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
 
 ## Visualizing probability distributions
-
-
 
 Breaking down the big problem -  two granularities at a time.
 
@@ -201,49 +188,7 @@ Breaking down the big problem -  two granularities at a time.
 #### Types of statistical distribution plots 
 
 
-&lt;img src="figure/violin-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-
-## Visualizing probability distributions
-
-
-Breaking down the big problem -  two granularities at a time.
-
-#### Types of statistical distribution plots 
-
-
-
-&lt;img src="figure/quantile-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-
-
-## Visualizing probability distributions
-
-
-
-Breaking down the big problem -  two granularities at a time.
-
-#### Types of statistical distribution plots 
-
-
-
-&lt;img src="figure/lv-1.svg" style="display: block; margin: auto;" /&gt;
-
----
-
-
-## Visualizing probability distributions
-
-
-
-Breaking down the big problem -  two granularities at a time.
-
-#### Types of statistical distribution plots 
-
-
-&lt;img src="figure/ridge-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;img src="figure/allplot-1.svg" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -263,9 +208,6 @@ class: center,middle
 
 
 
-## Interaction of bivariate granularities -  harmonies &amp; clashes
-
-&lt;img src="images/clash.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
