@@ -112,7 +112,6 @@ Well, there can be numerous ways to analyse this data! But I was interested in a
 
 class: center,middle
 
-# Problem
 
 ##  <span style="color: Crimson"> Problem:  <span style="color:#FFDAB9"> How do we systematically explore large quantities of temporal data across different deconstructions of time (half-hour, day, type of day, year) to find regular patterns or anomalies in behaviour? 
 
@@ -135,27 +134,29 @@ The key terms are decontructing time and visualizing distribution. In the next c
 <i> **Linear**</i>  days, weeks, months, years  
 <br>
 <br>
+<i> **Circular** </i>   day-of-week, month-of-year or hour-of-day  
 <br>
 <br>
 <br>
-```{r lineartime, out.width="100%", out.height=200}
-```
+<i> **Aperiodic** </i>  day-of-month, week-of-month  
+
+
 
 ]
 
 .pull-right[
 
-<i> **Circular** </i>   day-of-week, month-of-year or hour-of-day  
+```{r lineartime, out.width="120%", out.height="150%"}
+```
 <br>
-<i> **Aperiodic** </i>  day-of-month, week-of-month  
-
-```{r circulartime, out.width="100%", out.height=200}
+```{r circulartime, out.width="70%"}
 ```
 
 
 ]
 
 ---
+
 #  Decontructing time: Order
 
 
@@ -167,32 +168,12 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 ```
 
- 
-???
-
-The Mayan calendar or Haab has 365 days made up of 18 months of 20 days each, which adds up to 360 days. The remaining five days at the end of the year is an unlucky, dangerous time when Mayans stayed home and neglected all activities to avoid disaster. Thus the Mayan calendar is structured as follows and given this hierarchy we can talk about single and multiple order up granularities. 
-
-
- <span style="color:Crimson">
- <small>
- In Mayan system, the calendar (periodic) was structured as follows: 
-
-<span style="color:Crimson"><i>
-1 kin = 1 day  
-1 uinal = 20 kin  
-1 tun  = 18 uinal  
-1 katun = 20 tun  
-1 baktun = 20 katun  
-</i>
-</small>
-
 
 ---
 
 class: center,middle
 
 # Computation of granularities
-
 
 
 
@@ -205,84 +186,18 @@ class: center,middle
 
 ```
 
-
-## Visualizing probability distributions
-
-
-
-Breaking down the big problem -  two granularities at a time.
-
-
-
-#### Types of statistical distribution plots 
-
-```{r box}
-
-```
-
 ---
 
 
 ## Visualizing probability distributions
 
-
-
 Breaking down the big problem -  two granularities at a time.
 
 
 #### Types of statistical distribution plots 
 
 
-```{r violin}
-
-```
-
----
-
-## Visualizing probability distributions
-
-
-Breaking down the big problem -  two granularities at a time.
-
-#### Types of statistical distribution plots 
-
-
-
-```{r quantile}
-
-```
-
----
-
-
-## Visualizing probability distributions
-
-
-
-Breaking down the big problem -  two granularities at a time.
-
-#### Types of statistical distribution plots 
-
-
-
-```{r lv}
-
-```
-
----
-
-
-## Visualizing probability distributions
-
-
-
-Breaking down the big problem -  two granularities at a time.
-
-#### Types of statistical distribution plots 
-
-
-```{r ridge}
-
+```{r allplot}
 ```
 
 

@@ -18,8 +18,6 @@ smart_meter50 <- read_rds("data/sm_cust50.rds")%>%
          general_supply_kwh, 
          everything())
 
-
-
 ##----motivation1
 
 smart_meter50 %>% filter(customer_id %in% 10006414) %>% ggplot() + geom_line(aes(x =reading_datetime, y = general_supply_kwh), color = "#1B9E77")+ theme(legend.position = "bottom")
@@ -284,8 +282,59 @@ knitr::include_graphics("images/circular.png")
 knitr::include_graphics("images/calendar_new.jpg")
 
 
-##----box
+##----allplot
 
+pbox <- smart_meter50 %>% 
+  create_gran("hour_day") %>% 
+  filter(hour_day %in% c(20, 10, 2, 15)) %>% 
+  ggplot(aes(x = hour_day, y = log(general_supply_kwh))) +
+  geom_boxplot() + ylab("") + xlab("")
+
+
+pviolin <- smart_meter50 %>% 
+  create_gran("hour_day") %>% 
+  filter(hour_day %in% c(20, 10, 2, 15)) %>% 
+  ggplot(aes(x = hour_day, y = log(general_supply_kwh))) +
+  geom_violin() + ylab("") + xlab("")
+  
+plv <- smart_meter50 %>% 
+  create_gran("hour_day") %>% 
+  filter(hour_day %in% c(20, 10, 2, 15)) %>% 
+  ggplot(aes(x = hour_day, y = log(general_supply_kwh))) + 
+  geom_lv(aes(fill = ..LV..), outlier.colour = "red", outlier.shape = 1) +
+  ylab("") + xlab("") + theme(legend.position = "None") 
+
+pridge <- smart_meter50 %>% 
+  mutate(Demand = general_supply_kwh*100) %>% 
+  create_gran("hour_day") %>% 
+  filter(hour_day %in% c(20, 10, 2, 15)) %>% 
+  ggplot(aes(x = Demand, y = hour_day)) + 
+  ggridges::geom_density_ridges()  + 
+  ylab("") + 
+  xlab("")
+
+
+ p4_quantile <- smart_meter50 %>% 
+   create_gran("hour_day") %>% 
+   mutate(Demand = log(general_supply_kwh)) %>% 
+   group_by(hour_day) %>%  do({
+    x <- .$Demand
+    map_dfr(
+      .x = c(0.1, 0.25, 0.5, 0.75, 0.9),
+      .f = ~ tibble(
+        Quantile = .x,
+        Value = quantile(x, probs = .x, na.rm = TRUE)
+      )
+    )
+  })
+  
+  pquant <- p4_quantile %>% ggplot(aes(x = hour_day, y = Value, group=Quantile,  col = as.factor(Quantile))) + geom_line() +   xlab("") + ylab("") + theme(legend.position = "None") + scale_color_brewer(palette = "Dark2") +   ylab("") + xlab("")
+  
+  
+ggarrange(pbox, pviolin, plv, pridge, pquant, nrow = 1, ncol =5, labels = c("box", "violin", "lv", "ridge", "quantile"))
+
+
+##----box
 mpg <- mpg %>% filter (class %in% c("compact", "midsize", "suv","minivan", "pickup")) %>% 
                    mutate(cls = 
                         case_when(
