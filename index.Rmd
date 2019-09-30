@@ -191,18 +191,20 @@ The Mayan calendar or Haab has 365 days made up of 18 months of 20 days each, wh
 
 class: center,middle
 
-# Challenges : Computation of granularities
+# Computation of granularities
 
- <br>
 
-### Compute any granularity given the hierarchy structure?
- <br>
- <br>
- 
-### Exhaustive list of granularities to explore?
- <br>
- 
+
+
 ---
+
+
+## Interaction of bivariate granularities -  harmonies & clashes
+
+```{r clash, out.width="100%"}
+
+```
+
 
 ## Visualizing probability distributions
 
@@ -301,11 +303,6 @@ class: center,middle
 
 
 
-## Interaction of bivariate granularities -  harmonies & clashes
-
-```{r clash, out.width="100%"}
-
-```
 
 ---
 
