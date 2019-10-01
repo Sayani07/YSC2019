@@ -262,13 +262,13 @@ glimpse(cricket)
 # gganimate::animate(anim, fps = 10, width = 1000, height = 600)
 # 
 # 
-# anim_save("~/Documents/YSc2019/images/cricketex.gif")
+#anim_save("~/Documents/YSc2019/images/cricketex.gif")
 # #
 
 #
 
 
-knitr::include_graphics("images/cricketex_next.gif")
+knitr::include_graphics("images/cricketex.gif")
 
 
 ##----lineartime
