@@ -1,7 +1,7 @@
 ---
 title: "Exploring probability distributions for bivariate temporal granularities"
 type: "contributed"
-author: "<br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> @Sayani07"
+author: "<br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> @Sayani07 <br><br><style='color:#DB7093'> <small> Slides: https://sayanigupta-ysc.netlify.com/</small>"
 date: <font size="5"> Young Statisticians Conference <br> October 2, 2019
 output:
   xaringan::moon_reader:
@@ -326,7 +326,7 @@ class: center, middle
 ### More Information
 
 Package : https://github.com/Sayani07/gravitas  
-Slides: https://sayani07.netlify.com/talk/ysc2019/
+Slides: https://sayanigupta-ysc.netlify.com/
 
 ### With special thanks to 
 

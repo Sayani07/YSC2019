@@ -67,10 +67,9 @@ The pairs that are compatible with each other  are called harmonies.
 
 The next key point is visualizing probability distributions. We have several possibilities at your disposal for visualizing statistical distributions. Each comes with some pros and cons which we need to consider while choosing the best one for our context.
 
-Standard boxplots display a compact distributional summary with median, quartiles, hinges, whiskers and extreme outliers. These are helpful to get an idea of the distribution at a glance. Disadvantage can be we do not have an idea if the distribution is multimodal and estimates of tail behavior beyond the quartiles are not trustworthy.
-Also, the number of outliers is large for larger data set. 
+Standard boxplots display a compact distributional summary with median, quartiles and extreme outliers. the number of outliers is larger for larger data set and we do not have an idea if the distribution is multimodal
 
-Violin plots add the information available from local density estimates to summary statistics provided by box plots. Adding two density plots gives a symmetric plot which makes it easier to see the magnitude of the density and compare across categories. The density in violin plots are estimated through kernel density estimation and thus makes assumptions when selecting kernel or bandwidth. 
+Violin plots add the information available from local density estimates to summary statistics provided by box plots.  The density in violins are estimated through kernel density estimation and thus makes assumptions when selecting kernel or bandwidth. 
 
 Letter value plots convey detailed information about tails of the distribution,  It shows only actual data values and no smoothed summaries.
 
