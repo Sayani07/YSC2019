@@ -232,41 +232,43 @@ glimpse(cricket)
 
 ##----cricketex
 
-# 
-#  cricket_per_over <- cricket %>%
-#    group_by(season, match_id, batting_team, bowling_team,  inning, over) %>%
-#    summarise(runs_per_over = sum(total_runs), run_rate = sum(total_runs)/length(total_runs))
-# 
-#  cricket_tsibble_all <- cricket_per_over %>%
-#    ungroup() %>%
-#    mutate(data_index = row_number()) %>%
-#    as_tsibble(index = data_index)
-# 
-# 
-#  p = cricket_tsibble_all %>%
-#    filter(season %in% c(2010:2015),
-#           batting_team %in% c("Mumbai Indians", "Kolkata Knight Riders"),
-#                               inning %in% c(1,2)) %>%
-#    granplot("inning", "over",
-#             hierarchy_model,
-#             response = "run_rate",
-#             plot_type = "lv",
-#             quantile_prob = c(0.1, 0.25, 0.5, 0.75, 0.9))
-# 
 
-
-#anim <-  p + gganimate::transition_states(batting_team)+ labs(title = "{closest_state}")
+#   cricket_per_over <- cricket %>%
+#     group_by(season, match_id, batting_team, bowling_team,  inning, over) %>%
+#     summarise(runs_per_over = sum(total_runs), run_rate = sum(total_runs)/length(total_runs))
 # 
-#gganimate::animate(anim, fps = 10, width = 1000, height = 600)
-
-
-#anim_save("~/Documents/YSc2019/images/cricketex.gif")
+#   cricket_tsibble_all <- cricket_per_over %>%
+#     ungroup() %>%
+#     mutate(data_index = row_number()) %>%
+#     as_tsibble(index = data_index)
 # 
+# 
+#   p = cricket_tsibble_all %>%
+#     filter(season %in% c(2010:2015),
+#            batting_team %in% c("Mumbai Indians", "Kolkata Knight Riders"),
+#                                inning %in% c(1,2)) %>%
+#     granplot("inning", "over",
+#              hierarchy_model,
+#              response = "run_rate",
+#              plot_type = "lv",
+#              quantile_prob = c(0.1, 0.25, 0.5, 0.75, 0.9))
+# 
+# 
+# 
+# anim <-  p + gganimate::transition_states(batting_team)+ labs(title = "{next_state}",
+#                                                               transition_length = 0.1,
+#                                                               state_length = 2)
+# 
+# gganimate::animate(anim, fps = 10, width = 1000, height = 600)
+# 
+# 
+# anim_save("~/Documents/YSc2019/images/cricketex.gif")
+# #
 
 #
-  
 
-knitr::include_graphics("images/cricketex.gif")
+
+knitr::include_graphics("images/cricketex_next.gif")
 
 
 ##----lineartime
