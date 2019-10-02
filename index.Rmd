@@ -1,7 +1,7 @@
 ---
 title: "Exploring probability distributions for bivariate temporal granularities"
 type: "contributed"
-author: "<br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> @Sayani07 <br><br><style='color:#DB7093'> <small> Slides: https://sayanigupta-ysc.netlify.com/</small>"
+author: "<br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> @Sayani07 <br><br><small> https://sayanigupta-ysc.netlify.com/</small>"
 date: <font size="5"> Young Statisticians Conference <br> October 2, 2019
 output:
   xaringan::moon_reader:
@@ -335,6 +335,8 @@ Slides: https://sayanigupta-ysc.netlify.com/
 #### <span style="color: White"> Supervisors <span style="color: Crimson"> Professor Rob J Hyndman <span style="color: White">  &  <span style="color: Crimson">  Professor Dianne Cook
 <br>
 #### <span style="color: White"> Slides created with <span style="color: Crimson"><i> Rmarkdown, knitr, xaringan, xaringanthemer</i>
+<br>
+**<span style="color: Crimson"> Monash University**
 ]
 
 .pull-right[
