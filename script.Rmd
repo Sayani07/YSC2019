@@ -27,7 +27,7 @@ In such cases, it is common to see aggregates of usage across households or just
 
 ## Slide 4
 
-Well, so how can you visualize this data, given the huge volume and spread?
+Well, so what is my problem?
 
 
 ## Slide 5 - 6
@@ -40,7 +40,8 @@ I would discuss the two key terms in the next slides.
 
 ## Slide 7
 
-If we call any abstraction of time as a granularity, granualrities can be defined from different standpoints. The first one being arrangement, where granularities are said to be linear when they are defined unidirectionally from past to future. So we have entire set of time points and they we divide these into blocks of hours, days, weeks and so on. Granularilities can be circular when they repeat at regular intervals like day-of-week, or nearly circular like day-of-month.
+If we call any abstraction of time as a granularity, granualrities can be defined from different standpoints. The first one being arrangement, where granularities are said to be linear when they are defined unidirectionally from past to future. <!-- So we have entire set of time points and they we divide these into blocks of hours, days, weeks and so on.  -->
+Granularilities can be circular when they repeat at regular intervals like day-of-week, or nearly circular like day-of-month.
 
 ## Slide 8
 
@@ -67,15 +68,17 @@ The pairs that are compatible with each other  are called harmonies.
 
 The next key point is visualizing probability distributions. We have several possibilities at your disposal for visualizing statistical distributions. Each comes with some pros and cons which we need to consider while choosing the best one for our context.
 
-Standard boxplots display a compact distributional summary with median, quartiles and extreme outliers. the number of outliers is larger for larger data set and we do not have an idea if the distribution is multimodal
+Traditional methods of plotting distributions include boxplots which display a compact distribution
+<!-- al summary with median, quartiles and extreme outliers. the number of outliers is larger for larger data set and we do not have an idea if the distribution is multimodal -->
 
-Violin plots add the information available from local density estimates to summary statistics provided by box plots.  The density in violins are estimated through kernel density estimation and thus makes assumptions when selecting kernel or bandwidth. 
+ or violin plots add the information available from local density estimates to summary statistics provided by box plots.  
+ 
+<!-- The density in violins are estimated through kernel density estimation and thus makes assumptions when selecting kernel or bandwidth.  -->
 
-Letter value plots convey detailed information about tails of the distribution,  It shows only actual data values and no smoothed summaries.
+More recent forms of visulizing distributions include Letter value plots which convey detailed information about tails of the distribution or quantile plots which avoids much clutter and just enable us to focus on specific probabilities. Other options can be ridge plots or many variations of these.
 
-For decile plots,  no distributional assumptions are made about the data since empirical deciles are plotted. It avoids much clutter and just enable us to focus on specific probabilities.
 
-Ridge plots are density plots all aligned to the same horizontal scale and presented with a slight overlap. If there are lot of categories, it is difficult to compare the height of the densities across categories.
+<!-- Ridge plots are density plots all aligned to the same horizontal scale and presented with a slight overlap. If there are lot of categories, it is difficult to compare the height of the densities across categories. -->
 
 
 For all these plots, we should be vigilant of the number of the number of observations based on which distributions are plotted.
@@ -85,7 +88,7 @@ For all these plots, we should be vigilant of the number of the number of observ
 ## Slide 12
 
 
-So my package gravitas has functions which try to address each of these three aspects of granularities. You can install it using this link here.
+So my package gravitas has functions which try to address each of these three aspects of granularities. It lets us assess all granularities at our disposal,  compute them, screen the harmonies, check if observations are sufficient for plotting distributions and creates a recommended plot.
 
 ## Slide 13
 
@@ -106,7 +109,7 @@ Now that we have 13 harmonies to visualize, we can decide on the distribution pl
 
 For example, 
 
-We plot the hours of the day on the x-axis and months of the year across facets and energy consumption of 50 households on the y-axis. What we see from the plot is the distribution is extremely skewed to the left. There is less difference between the morning behavior of the top 1% and 10% of the people compared to their evening behaviors for all months. The good news is 50% of the households (25) are using energy within the range of 0.1 Kwh. The next 12 households have different behavior only during the peak morning and evening hours. While, the top 5 energy users consume significantly more energy through out the day. 
+We plot the hours of the day on the x-axis and months of the year across facets and energy consumption of 50 households on the y-axis.  What we see from the plot is the distribution is extremely skewed to the left as the lower boundaries of the bands are not visible, whereas the upper boundaries are. The good news is 50% of the households (25) are using energy within the range of 0.1 Kwh. The next 12 households have different behavior only during the peak morning and evening hours in summer. While, the top 5 energy users consume significantly more energy through out the day for all months. 
 
 Insights like these can be drawn about the behavior of the households which were not obvious if we plot a summary statistic or see overall usage. 
 
