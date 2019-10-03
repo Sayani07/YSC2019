@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Slide 1
 
 Hi everyone, today I'm going to present to you exploring probability distributions for bivariate temporal granularities. Before I jump into the problem, I want to briefly go through why I got interested in this problem.
-A smart meter is a device that digitally measures our energy use. I had the smart meter data for every 30 minutes available from  2012 to 2014. Hence, the finest temporal scale available to me was half an hour. This was available for 14K households across different local government areas in New Castle, NSW and parts of Sydney. The volume was of the order 40 billion observations that I wanted to visualize. 
+A smart meter is a device that digitally measures our energy use. I had the smart meter data for every 30 minutes available from  2012 to 2014. Hence, the finest temporal scale available to me was half an hour. This was available for 14K households across different local government areas in New Castle, and parts of Sydney. The volume was of the order 40 billion observations that I wanted to visualize. 
 
 ## Slide 2
 
@@ -20,7 +20,7 @@ To have a perspective of how different the energy consumption for each household
 
 ## Slide 3
 
-Moreover, things become more hard when we try to visualize periodicity in the data for all households. For example, if we plot the energy consumption across each hour of the day, the structure of the data suggest that there are several data points for each hour of the day for just one household. Hence, for several households, there will be a blob of points for each hour of the day. 
+Things become more hard when we try to visualize periodicity in the data for all households. For example, if we plot the energy consumption across each hour of the day, the structure of the data suggest that there are several data points for each hour of the day for just one household. Hence, for several households, there will be a blob of points for each hour of the day. 
 
 In such cases, it is common to see aggregates of usage across households or just one particular summary statistic. But studying overall energy use hides the distributions of usage at finer scales, making it difficult to examine the distribution of energy behaviors of all households.
 
@@ -109,7 +109,7 @@ Now that we have 13 harmonies to visualize, we can decide on the distribution pl
 
 For example, 
 
-We plot the hours of the day on the x-axis and months of the year across facets and energy consumption of 50 households on the y-axis.  What we see from the plot is the distribution is extremely skewed to the left as the lower boundaries of the bands are not visible, whereas the upper boundaries are. The good news is 50% of the households (25) are using energy within the range of 0.1 Kwh. The next 12 households have different behavior only during the peak morning and evening hours in summer. While, the top 5 energy users consume significantly more energy through out the day for all months. 
+We plot the hours of the day on the x-axis and months of the year across facets and energy consumption of 50 households on the y-axis. The narrowest band runs from 25 to 75th percentile, the next one from 10th to 90th and the next from 1st to 99th.  What we see from the plot is the distribution is extremely skewed to the left as the lower boundaries of the bands are not visible, whereas the upper boundaries are. The good news is 50% of the households (25) are using energy within the range of 0.1 Kwh. The next 12 households have different behavior only during the peak morning and evening hours in summer. While, the top 5 energy users consume significantly more energy through out the day for all months. 
 
 Insights like these can be drawn about the behavior of the households which were not obvious if we plot a summary statistic or see overall usage. 
 
@@ -124,7 +124,7 @@ We take two top teams from Indian premiere league and plot their run rate across
 
 ## Slide 19
 
-Thank you slide and more information,
+Thank you slide and more information, 
 
 
 
