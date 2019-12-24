@@ -96,6 +96,22 @@ Just to give you some perspective I have this data from Department of Energy and
 
 ---
 
+# Explorartory Data Analysis
+
+
+```{r dino-saurus}
+include_graphics("images/dino-saurus.gif")
+```
+
+
+["Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing"](https://www.autodeskresearch.com/publications/samestats)
+
+<!-- -- [Nick Tierney, WOMBAT2019](https://github.com/njtierney/wombat19) -->
+
+
+
+---
+
 
 background-image: url("images/problem.png")
 
@@ -175,10 +191,22 @@ class: inverse middle center
 
 
 ---
+class: inverse middle
 
-#  Data Structure for exploration 
+##  Data Structure for exploration 
 
 
+#### Tsibble is  a data abstraction for tidy temporal data
+
+<hr>
+
+<img src="images/tsibble.png", height = "160px">
+
+#### Data structure is an extension of tsibble structure
+
+<hr>
+
+<img src="images/data-structure.png", height = "160px">
 
 ---
 
