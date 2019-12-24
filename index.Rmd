@@ -1,11 +1,12 @@
 ---
-title: "Exploring temporal data across bivariate temporal granularities by visualizing probability distribution"
+title: "Exploring probability distributions for bivariate temporal granularities"
 type: "contributed"
-author: "<br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> @Sayani07 <br><br><small> https://sayanigupta-iisa.netlify.com/</small>"
+author: "<br> Sayani Gupta <br> <i class='fab fa-github'></i> Sayani07 <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> @SayaniGupta07 <br><small> https://sayanigupta-iisa.netlify.com/</small>"
 date: <font size="5"> Indian Institute of Statistical Association <br> December 26, 2019
 output:
   xaringan::moon_reader:
-    css: ["xaringan-themer.css", "libs/font-awesome/css/fontawesome-all.css"]
+    after_body: ["libs/collapseoutput.js"]
+    css: ["libs/remark.css", "xaringan-themer.css", "libs/font-awesome/css/fontawesome-all.css"]
     self_contained: false
     nature:
       ratio: 4:3
@@ -156,21 +157,22 @@ class: inverse middle center
 .pull-left[
 #### **Granularities** : abstractions of time based on calendar
 <br>
- -  <i> **Linear**</i>  days, weeks, months, years  
-<br>
- -  <i> **Circular** </i>   day-of-week, month-of-year or hour-of-day  
-<br>
- -  <i> **Quasi-circular** </i>   day-of-month, week-of-month   
+ <i> **Linear**</i>  
+ - days, weeks, months, years  
 <br>
 
+<i> **Cyclic** </i>
+
+ -  <i> **Circular** </i>   day-of-week, month-of-year or hour-of-day  
+ -  <i> **Quasi-circular** </i>   day-of-month, week-of-month   
  -  <i> **Aperiodic** </i>  public holidays, school vacations
 ]
 
 .pull-right[
-```{r lineartime, out.width="260%", out.height="150%"}
+```{r lineartime, out.width="260%", out.height="300%"}
 ```
 <br>
-```{r circulartime, out.width = "100%"}
+```{r circulartime, out.width = "100%", out.height="70%"}
 ```
 
 
@@ -191,50 +193,46 @@ class: inverse middle center
 
 
 ---
-class: inverse middle
+class: inverse middle center
 
 ##  Data Structure for exploration 
 
 
 #### Tsibble is  a data abstraction for tidy temporal data
 
-<hr>
 
-<img src="images/tsibble.png", height = "160px">
+<img src="images/tsibble.png", height = "200px">
 
 #### Data structure is an extension of tsibble structure
 
-<hr>
 
-<img src="images/data-structure.png", height = "160px">
-
----
-
-# Computation of granularities
-
-$z$       : index of a tsibble  
-<br>
-$x$, $y$  : two units in the hierarchy table with  $order(x) <  order(y)$  
-<br>
-$f(x, y)$ : accessor function for computing the granularity  
-<br>
-$c(x, y)$ : a constant which relates x and y  
-<br>
-
-#### **Single-order-up**
-$$f(x, y) = \lfloor z/c(z,x) \rfloor\mod c(x,y)$$ where $y = x+1$
-
-
-#### **Multiple-order-up**
-
-
-\begin{split}
-f(x,y) & = \sum_{i=0}^{order(y) - order(x) - 1} c(x, x+i)(f(x
-  +i, x+i+1) - 1)\\
-\end{split}
-
+<img src="images/data-structure.png", height = "200px">
 
 ---
+
+<!-- # Computation of granularities -->
+
+<!-- $z$       : index of a tsibble   -->
+<!-- <br> -->
+<!-- $x$, $y$  : two units in the hierarchy table with  $order(x) <  order(y)$   -->
+<!-- <br> -->
+<!-- $f(x, y)$ : accessor function for computing the granularity   -->
+<!-- <br> -->
+<!-- $c(x, y)$ : a constant which relates x and y   -->
+<!-- <br> -->
+
+<!-- #### **Single-order-up** -->
+<!-- $$f(x, y) = \lfloor z/c(z,x) \rfloor\mod c(x,y)$$ where $y = x+1$ -->
+
+
+<!-- #### **Multiple-order-up** -->
+
+
+<!-- \begin{split} -->
+<!-- f(x,y) & = \sum_{i=0}^{order(y) - order(x) - 1} c(x, x+i)(f(x -->
+<!--   +i, x+i+1) - 1)\\ -->
+<!-- \end{split} -->
+
 
 
 ## Interaction of bivariate granularities
@@ -251,7 +249,6 @@ f(x,y) & = \sum_{i=0}^{order(y) - order(x) - 1} c(x, x+i)(f(x
 
 ## Visualizing probability distributions
 
-Breaking down the big problem -  two granularities at a time.
 
 
 #### Types of statistical distribution plots 
