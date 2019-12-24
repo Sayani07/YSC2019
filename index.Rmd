@@ -153,9 +153,8 @@ class: inverse middle center
 
 ---
 
-#  Decontructing time: Arrangement
+#  Time granularities: abstractions of time based on calendar
 .pull-left[
-#### **Granularities** : abstractions of time based on calendar
 <br>
  <i> **Linear**</i>  
  - days, weeks, months, years  
@@ -169,27 +168,33 @@ class: inverse middle center
 ]
 
 .pull-right[
-```{r lineartime, out.width="260%", out.height="300%"}
-```
-<br>
-```{r circulartime, out.width = "100%", out.height="70%"}
-```
-
-
-]
-
----
-
-#  Decontructing time: Order
-
+<!-- # ```{r lineartime, out.width="260%", out.height="300%"} -->
+<!-- # ``` -->
+<!-- # <br> -->
+<!-- # ```{r circulartime, out.width = "100%", out.height="70%"} -->
+<!-- # ``` -->
+<!-- #  -->
 
 <i>**Single-order-up**</i> second-of-minute, hour-of-day  
 <br>
 <i>**Multiple-order-up**</i> second-of-hour, hour-of-week  
 
-```{r calendar, out.height=380, out.width="100%"}
+```{r calendar, out.width="100%"}
 
 ```
+]
+
+
+<!-- #  Decontructing time: Order -->
+
+
+<!-- <i>**Single-order-up**</i> second-of-minute, hour-of-day   -->
+<!-- <br> -->
+<!-- <i>**Multiple-order-up**</i> second-of-hour, hour-of-week   -->
+
+<!-- ```{r calendar, out.height=380, out.width="100%"} -->
+
+<!-- ``` -->
 
 
 ---
@@ -268,11 +273,11 @@ class: inverse middle center
 --- 
 
 .left[
-- Compute any granularity? <span style="color:Red">`create_gran`
+Compute any cyclic granularity? <span style="color:Red">`create_gran()`
  <br>
  <br>
  
-- Exhaustive list of granularities to explore? <span style="color:Red"> `search_gran`
+Exhaustive list of granularities to explore? <span style="color:Red"> `search_gran()`
  <br>
        ]
 
@@ -282,10 +287,10 @@ class: inverse middle center
  ### Interaction
  --- 
  
-- Check if bivariate granularities are harmonies/clashes? <span style="color:Red">  `is.harmony`
+Check if cyclic granularities are harmonies/clashes?  `is.harmony()`
 <br>
 <br>
-- List of harmonies to explore? <span style="color:Red"> `harmony`
+List of harmonies to explore? `harmony()`
 <br>
  ]
 
@@ -293,11 +298,11 @@ class: inverse middle center
 ### Visualization
 --- 
 
-- Best probability distribution plot for harmonies? 
- <span style="color:Red"> `granplot`
+Possible probability distributions plots for harmonies?  `prob_plot()`
 <br>
 <br>
-- Sufficient observations?  <span style="color:Red">  `gran_obs`
+Sufficient observations?  `gran_obs()`  
+Recommendation on a harmony? `gran_advice()`
 
  ]
 
