@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title>Exploring probability distributions for bivariate temporal granularities</title>
+    <title>Exploring temporal data across bivariate temporal granularities by visualizing probability distribution</title>
     <meta charset="utf-8" />
-    <meta name="author" content="  Sayani Gupta     @Sayani07    https://sayanigupta-ysc.netlify.com/" />
+    <meta name="author" content="  Sayani Gupta     @Sayani07    https://sayanigupta-iisa.netlify.com/" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="libs/font-awesome/css/fontawesome-all.css" type="text/css" />
   </head>
@@ -11,9 +11,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Exploring probability distributions for bivariate temporal granularities
-### <br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> <span class="citation">@Sayani07</span> <br><br><small> <a href="https://sayanigupta-ysc.netlify.com/" class="uri">https://sayanigupta-ysc.netlify.com/</a></small>
-### <font size="5"> Young Statisticians Conference <br> October 2, 2019
+# Exploring temporal data across bivariate temporal granularities by visualizing probability distribution
+### <br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> <span class="citation">@Sayani07</span> <br><br><small> <a href="https://sayanigupta-iisa.netlify.com/" class="uri">https://sayanigupta-iisa.netlify.com/</a></small>
+### <font size="5"> Indian Institute of Statistical Association <br> December 26, 2019
 
 ---
 
@@ -104,17 +104,29 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 ---
 
+class: inverse middle center
+
+.animated.bounce[
+&lt;img src="images/gravitas.png" height=280px&gt;
+]
+
+## Visualize probability distributions over different time granularities
+
+
+---
+
 #  Decontructing time: Arrangement
 .pull-left[
-#### **Granularities**  
-abstractions of time based on calendar
-&lt;br&gt;
+#### **Granularities** : abstractions of time based on calendar
 &lt;br&gt;
  -  &lt;i&gt; **Linear**&lt;/i&gt;  days, weeks, months, years  
 &lt;br&gt;
  -  &lt;i&gt; **Circular** &lt;/i&gt;   day-of-week, month-of-year or hour-of-day  
 &lt;br&gt;
- -  &lt;i&gt; **Aperiodic** &lt;/i&gt;  day-of-month, week-of-month  
+ -  &lt;i&gt; **Quasi-circular** &lt;/i&gt;   day-of-month, week-of-month   
+&lt;br&gt;
+
+ -  &lt;i&gt; **Aperiodic** &lt;/i&gt;  public holidays, school vacations
 ]
 
 .pull-right[
@@ -135,6 +147,12 @@ abstractions of time based on calendar
 &lt;i&gt;**Multiple-order-up**&lt;/i&gt; second-of-hour, hour-of-week  
 
 &lt;img src="images/calendar_new.jpg" width="100%" height="380" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+#  Data Structure for exploration 
+
 
 
 ---
@@ -265,10 +283,9 @@ Breaking down the big problem -  two granularities at a time.
 
 
 ```
-#&gt;  [1] "hhour_hour"      "hhour_day"       "hhour_week"     
-#&gt;  [4] "hhour_fortnight" "hhour_month"     "hour_day"       
-#&gt;  [7] "hour_week"       "hour_fortnight"  "hour_month"     
-#&gt; [10] "day_week"        "day_fortnight"   "day_month"      
+#&gt;  [1] "hhour_hour"      "hhour_day"       "hhour_week"      "hhour_fortnight"
+#&gt;  [5] "hhour_month"     "hour_day"        "hour_week"       "hour_fortnight" 
+#&gt;  [9] "hour_month"      "day_week"        "day_fortnight"   "day_month"      
 #&gt; [13] "week_fortnight"  "week_month"      "fortnight_month"
 ```
 

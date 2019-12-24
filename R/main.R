@@ -9,6 +9,7 @@ library(gganimate)
 library(lubridate)
 library(ggridges)
 library(ggpubr)
+library(lvplot)
 #remotes::install_github("njtierney/palap")
 library(palap)
 
@@ -81,7 +82,7 @@ smart_meter50
 
 
 smart_meter50 %>%
-  dynamic_search_gran(lowest_unit = "hhour", highest_unit =  "month")
+  search_gran(lowest_unit = "hhour", highest_unit =  "month")
 
 
 ##----create_gran
@@ -116,7 +117,7 @@ smart_meter50 %>%
 
 smart_meter50   %>% 
   filter(customer_id %in% cust1$customer_id) %>% 
-  granplot("month_year", 
+  prob_plot("month_year", 
            "hour_day",
            plot_type = "quantile", 
            response = "general_supply_kwh",
@@ -129,7 +130,7 @@ smart_meter50   %>%
 ##----granplotoverlay2
 smart_meter50   %>% 
   filter(customer_id %in% cust1$customer_id) %>% 
-  granplot("month_year", 
+  prob_plot("month_year", 
            "hour_day",
            plot_type = "quantile", 
            response = "general_supply_kwh",
@@ -141,7 +142,7 @@ smart_meter50   %>%
 ##----granplotoverlay3
 smart_meter50   %>% 
   filter(customer_id %in% cust1$customer_id) %>% 
-  granplot("month_year", 
+  prob_plot("month_year", 
            "hour_day",
            plot_type = "quantile", 
            response = "general_supply_kwh",

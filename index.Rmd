@@ -1,8 +1,8 @@
 ---
-title: "Exploring probability distributions for bivariate temporal granularities"
+title: "Exploring temporal data across bivariate temporal granularities by visualizing probability distribution"
 type: "contributed"
-author: "<br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> @Sayani07 <br><br><small> https://sayanigupta-ysc.netlify.com/</small>"
-date: <font size="5"> Young Statisticians Conference <br> October 2, 2019
+author: "<br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> @Sayani07 <br><br><small> https://sayanigupta-iisa.netlify.com/</small>"
+date: <font size="5"> Indian Institute of Statistical Association <br> December 26, 2019
 output:
   xaringan::moon_reader:
     css: ["xaringan-themer.css", "libs/font-awesome/css/fontawesome-all.css"]
@@ -125,17 +125,29 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 ---
 
+class: inverse middle center
+
+.animated.bounce[
+<img src="images/gravitas.png" height=280px>
+]
+
+## Visualize probability distributions over different time granularities
+
+
+---
+
 #  Decontructing time: Arrangement
 .pull-left[
-#### **Granularities**  
-abstractions of time based on calendar
-<br>
+#### **Granularities** : abstractions of time based on calendar
 <br>
  -  <i> **Linear**</i>  days, weeks, months, years  
 <br>
  -  <i> **Circular** </i>   day-of-week, month-of-year or hour-of-day  
 <br>
- -  <i> **Aperiodic** </i>  day-of-month, week-of-month  
+ -  <i> **Quasi-circular** </i>   day-of-month, week-of-month   
+<br>
+
+ -  <i> **Aperiodic** </i>  public holidays, school vacations
 ]
 
 .pull-right[
@@ -160,6 +172,12 @@ abstractions of time based on calendar
 ```{r calendar, out.height=380, out.width="100%"}
 
 ```
+
+
+---
+
+#  Data Structure for exploration 
+
 
 
 ---
