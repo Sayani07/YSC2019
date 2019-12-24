@@ -33,9 +33,7 @@ library(xaringanthemer)
 solarized_dark(
   header_font_google = google_font("Josefin Sans"),
   text_font_google   = google_font("Montserrat", "300", "300i"),
-  code_font_google   = google_font("Droid Mono"),
-  header_color = "#FFFFE0",
-  text_color = "#FFDAB9"
+  code_font_google   = google_font("Droid Mono")
   
 )
 ```
@@ -141,8 +139,7 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 
 ---
-
-class: inverse middle center
+class: middle center
 
 .animated.bounce[
 <img src="images/gravitas.png" height=280px>
@@ -153,8 +150,12 @@ class: inverse middle center
 
 ---
 
-#  Time granularities: abstractions of time based on calendar
+#  Time granularities
+### abstractions of time based on calendar
+<br>
 .pull-left[
+
+### Arrangement
 <br>
  <i> **Linear**</i>  
  - days, weeks, months, years  
@@ -175,30 +176,20 @@ class: inverse middle center
 <!-- # ``` -->
 <!-- #  -->
 
-<i>**Single-order-up**</i> second-of-minute, hour-of-day  
+### Order 
+
+- <i>**Single-order-up**</i> second-of-minute, hour-of-day  
 <br>
-<i>**Multiple-order-up**</i> second-of-hour, hour-of-week  
+<br>
+<br>
+- <i>**Multiple-order-up**</i> second-of-hour, hour-of-week  
 
-```{r calendar, out.width="100%"}
-
-```
+<!-- # ```{r calendar, out.width="100%"} -->
+<!-- #  -->
+<!-- # ``` -->
 ]
-
-
-<!-- #  Decontructing time: Order -->
-
-
-<!-- <i>**Single-order-up**</i> second-of-minute, hour-of-day   -->
-<!-- <br> -->
-<!-- <i>**Multiple-order-up**</i> second-of-hour, hour-of-week   -->
-
-<!-- ```{r calendar, out.height=380, out.width="100%"} -->
-
-<!-- ``` -->
-
-
 ---
-class: inverse middle center
+class:  middle center
 
 ##  Data Structure for exploration 
 
@@ -213,7 +204,6 @@ class: inverse middle center
 
 <img src="images/data-structure.png", height = "200px">
 
----
 
 <!-- # Computation of granularities -->
 
@@ -239,8 +229,8 @@ class: inverse middle center
 <!-- \end{split} -->
 
 
-
-## Interaction of bivariate granularities
+---
+## Relationship of cyclic granularities
 
 **Harmonies** : pairs of granularities that aid exploratory data analysis  
 **Clashes**   : pairs leading to structurally empty sets  
@@ -251,8 +241,7 @@ class: inverse middle center
 
 ---
 
-
-## Visualizing probability distributions
+## Summarising probability distributions
 
 
 
@@ -315,39 +304,92 @@ Recommendation on a harmony? `gran_advice()`
 <!-- ##   granularity visualization of time series data  -->
 
 
-## An example : Electricity smart meter data
 
-<i><small>Data source</i></small> : [<small><i>Department of the Environment and Energy, Australia</i></small>](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)
-
+.left-column[
+## smart meter example
+#### - the data
+]
+.right-column[
 ```{r read}
 ```
+<i><small>Data source</i></small> : [<small><i>Department of the Environment and Energy, Australia</i></small>](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)
 
+]
 ---
 
-### Set of possible temporal granularities
+.left-column[
+## smart meter example
+#### - the data
+#### - possible cyclic granularities
+]
+.right-column[
 
+.pull-left[
 ```{r search_gran}
 ```
+]
 
-### So there are `r length(combn(13,2))` pair of granularities to look at.    <span style="color:Red"> -----> <large> WHAT??? </large>
+.pull-right[
 
+<span style="color:Orange"><large>  So there are $^{15} P_2$ =  `r length(combn(15,2))` pair of granularities to look at.    <span style="color:Red"> -----> <large> WHAT??? </large>
+]
+]
 ---
 
-## Set of harmonies
-
-### <span style="color:Orange"><large>  Good news! Only 13 out `r length(combn(13,2))` are harmonies </large>
+.left-column[
+## smart meter example
+#### - the data
+#### - possible cyclic granularities
+#### - set of harmonies
+]
+.right-column[
 
 ```{r harmony}
 ```
-
+### <span style="color:Orange"><large>  Good news! Only 13 out `r length(combn(15,2))` are harmonies </large>
+]
 ---
 
+.left-column[
+## smart meter example
+#### - the data
+#### - possible cyclic granularities
+#### - set of harmonies
+#### - gran_advice
+]
+.right-column[
 
-## Visualize Harmonies
+```{r gran-advice}
+```
+### <span style="color:Orange"><large>  Quantile plots recommended for the first harmony </large>
+]
 
+---
+.left-column[
+## smart meter example
+#### - the data
+#### - possible cyclic granularities
+#### - set of harmonies
+#### - gran_advice
+#### - visualize harmonies
+]
+.right-column[
+
+```r
+smart_meter50   %>% 
+  filter(customer_id %in% cust1$customer_id) %>% 
+* prob_plot("month_year", 
+*           "hour_day",
+*           plot_type = "quantile", 
+*           response = "general_supply_kwh",
+*           quantile_prob = c(0.05, 0.1, 0.25, 
+*                             0.5, 0.75, 0.9, 0.95)
+```
 
 ```{r granplotoverlay3}
 ```
+### <span style="color:Orange"><large>  Quantile plots recommended for the first harmony </large>
+]
 
 ---
 

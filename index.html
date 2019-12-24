@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title>Exploring temporal data across bivariate temporal granularities by visualizing probability distribution</title>
+    <title>Exploring probability distributions for bivariate temporal granularities</title>
     <meta charset="utf-8" />
-    <meta name="author" content="  Sayani Gupta     @Sayani07    https://sayanigupta-iisa.netlify.com/" />
+    <meta name="author" content="  Sayani Gupta    Sayani07    @SayaniGupta07   https://sayanigupta-iisa.netlify.com/" />
+    <link rel="stylesheet" href="libs/remark.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="libs/font-awesome/css/fontawesome-all.css" type="text/css" />
   </head>
@@ -11,8 +12,8 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Exploring temporal data across bivariate temporal granularities by visualizing probability distribution
-### <br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> <span class="citation">@Sayani07</span> <br><br><small> <a href="https://sayanigupta-iisa.netlify.com/" class="uri">https://sayanigupta-iisa.netlify.com/</a></small>
+# Exploring probability distributions for bivariate temporal granularities
+### <br> Sayani Gupta <br> <i class='fab fa-github'></i> Sayani07 <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <span class="citation">@SayaniGupta07</span> <br><small> <a href="https://sayanigupta-iisa.netlify.com/" class="uri">https://sayanigupta-iisa.netlify.com/</a></small>
 ### <font size="5"> Indian Institute of Statistical Association <br> December 26, 2019
 
 ---
@@ -117,8 +118,7 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 
 ---
-
-class: inverse middle center
+class: middle center
 
 .animated.bounce[
 &lt;img src="images/gravitas.png" height=280px&gt;
@@ -129,88 +129,87 @@ class: inverse middle center
 
 ---
 
-#  Decontructing time: Arrangement
+#  Time granularities
+### abstractions of time based on calendar
+&lt;br&gt;
 .pull-left[
-#### **Granularities** : abstractions of time based on calendar
+
+### Arrangement
 &lt;br&gt;
- -  &lt;i&gt; **Linear**&lt;/i&gt;  days, weeks, months, years  
-&lt;br&gt;
- -  &lt;i&gt; **Circular** &lt;/i&gt;   day-of-week, month-of-year or hour-of-day  
-&lt;br&gt;
- -  &lt;i&gt; **Quasi-circular** &lt;/i&gt;   day-of-month, week-of-month   
+ &lt;i&gt; **Linear**&lt;/i&gt;  
+ - days, weeks, months, years  
 &lt;br&gt;
 
+&lt;i&gt; **Cyclic** &lt;/i&gt;
+
+ -  &lt;i&gt; **Circular** &lt;/i&gt;   day-of-week, month-of-year or hour-of-day  
+ -  &lt;i&gt; **Quasi-circular** &lt;/i&gt;   day-of-month, week-of-month   
  -  &lt;i&gt; **Aperiodic** &lt;/i&gt;  public holidays, school vacations
 ]
 
 .pull-right[
-&lt;img src="images/linear-time.png" width="260%" height="150%" style="display: block; margin: auto;" /&gt;
+&lt;!-- # ```{r lineartime, out.width="260%", out.height="300%"} --&gt;
+&lt;!-- # ``` --&gt;
+&lt;!-- # &lt;br&gt; --&gt;
+&lt;!-- # ```{r circulartime, out.width = "100%", out.height="70%"} --&gt;
+&lt;!-- # ``` --&gt;
+&lt;!-- #  --&gt;
+
+### Order 
+
+- &lt;i&gt;**Single-order-up**&lt;/i&gt; second-of-minute, hour-of-day  
 &lt;br&gt;
-&lt;img src="images/circular.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;
+&lt;br&gt;
+- &lt;i&gt;**Multiple-order-up**&lt;/i&gt; second-of-hour, hour-of-week  
 
-
+&lt;!-- # ```{r calendar, out.width="100%"} --&gt;
+&lt;!-- #  --&gt;
+&lt;!-- # ``` --&gt;
 ]
-
 ---
-
-#  Decontructing time: Order
-
-
-&lt;i&gt;**Single-order-up**&lt;/i&gt; second-of-minute, hour-of-day  
-&lt;br&gt;
-&lt;i&gt;**Multiple-order-up**&lt;/i&gt; second-of-hour, hour-of-week  
-
-&lt;img src="images/calendar_new.jpg" width="100%" height="380" style="display: block; margin: auto;" /&gt;
-
-
----
-class: inverse middle
+class:  middle center
 
 ##  Data Structure for exploration 
 
 
-#### Tsibble is  a data abstraction for tidy temporal data.
+#### Tsibble is  a data abstraction for tidy temporal data
 
-&lt;hr&gt;
 
-&lt;img src="images/tsibble.png", height = "160px"&gt;
+&lt;img src="images/tsibble.png", height = "200px"&gt;
 
 #### Data structure is an extension of tsibble structure
 
-&lt;hr&gt;
 
-&lt;img src="images/data-structure.png", height = "160px"&gt;
-
----
-
-# Computation of granularities
-
-`\(z\)`       : index of a tsibble  
-&lt;br&gt;
-`\(x\)`, `\(y\)`  : two units in the hierarchy table with  `\(order(x) &lt;  order(y)\)`  
-&lt;br&gt;
-`\(f(x, y)\)` : accessor function for computing the granularity  
-&lt;br&gt;
-`\(c(x, y)\)` : a constant which relates x and y  
-&lt;br&gt;
-
-#### **Single-order-up**
-`$$f(x, y) = \lfloor z/c(z,x) \rfloor\mod c(x,y)$$` where `\(y = x+1\)`
+&lt;img src="images/data-structure.png", height = "200px"&gt;
 
 
-#### **Multiple-order-up**
+&lt;!-- # Computation of granularities --&gt;
+
+&lt;!-- `\(z\)`       : index of a tsibble   --&gt;
+&lt;!-- &lt;br&gt; --&gt;
+&lt;!-- `\(x\)`, `\(y\)`  : two units in the hierarchy table with  `\(order(x) &lt;  order(y)\)`   --&gt;
+&lt;!-- &lt;br&gt; --&gt;
+&lt;!-- `\(f(x, y)\)` : accessor function for computing the granularity   --&gt;
+&lt;!-- &lt;br&gt; --&gt;
+&lt;!-- `\(c(x, y)\)` : a constant which relates x and y   --&gt;
+&lt;!-- &lt;br&gt; --&gt;
+
+&lt;!-- #### **Single-order-up** --&gt;
+&lt;!-- `$$f(x, y) = \lfloor z/c(z,x) \rfloor\mod c(x,y)$$` where `\(y = x+1\)` --&gt;
 
 
-`\begin{split}
-f(x,y) &amp; = \sum_{i=0}^{order(y) - order(x) - 1} c(x, x+i)(f(x
-  +i, x+i+1) - 1)\\
-\end{split}`
+&lt;!-- #### **Multiple-order-up** --&gt;
+
+
+&lt;!-- \begin{split} --&gt;
+&lt;!-- f(x,y) &amp; = \sum_{i=0}^{order(y) - order(x) - 1} c(x, x+i)(f(x --&gt;
+&lt;!--   +i, x+i+1) - 1)\\ --&gt;
+&lt;!-- \end{split} --&gt;
 
 
 ---
-
-
-## Interaction of bivariate granularities
+## Relationship of cyclic granularities
 
 **Harmonies** : pairs of granularities that aid exploratory data analysis  
 **Clashes**   : pairs leading to structurally empty sets  
@@ -219,10 +218,8 @@ f(x,y) &amp; = \sum_{i=0}^{order(y) - order(x) - 1} c(x, x+i)(f(x
 
 ---
 
+## Summarising probability distributions
 
-## Visualizing probability distributions
-
-Breaking down the big problem -  two granularities at a time.
 
 
 #### Types of statistical distribution plots 
@@ -241,11 +238,11 @@ Breaking down the big problem -  two granularities at a time.
 --- 
 
 .left[
-- Compute any granularity? &lt;span style="color:Red"&gt;`create_gran`
+Compute any cyclic granularity? &lt;span style="color:Red"&gt;`create_gran()`
  &lt;br&gt;
  &lt;br&gt;
  
-- Exhaustive list of granularities to explore? &lt;span style="color:Red"&gt; `search_gran`
+Exhaustive list of granularities to explore? &lt;span style="color:Red"&gt; `search_gran()`
  &lt;br&gt;
        ]
 
@@ -255,10 +252,10 @@ Breaking down the big problem -  two granularities at a time.
  ### Interaction
  --- 
  
-- Check if bivariate granularities are harmonies/clashes? &lt;span style="color:Red"&gt;  `is.harmony`
+Check if cyclic granularities are harmonies/clashes?  `is.harmony()`
 &lt;br&gt;
 &lt;br&gt;
-- List of harmonies to explore? &lt;span style="color:Red"&gt; `harmony`
+List of harmonies to explore? `harmony()`
 &lt;br&gt;
  ]
 
@@ -266,11 +263,11 @@ Breaking down the big problem -  two granularities at a time.
 ### Visualization
 --- 
 
-- Best probability distribution plot for harmonies? 
- &lt;span style="color:Red"&gt; `granplot`
+Possible probability distributions plots for harmonies?  `prob_plot()`
 &lt;br&gt;
 &lt;br&gt;
-- Sufficient observations?  &lt;span style="color:Red"&gt;  `gran_obs`
+Sufficient observations?  `gran_obs()`  
+Recommendation on a harmony? `gran_advice()`
 
  ]
 
@@ -283,10 +280,12 @@ Breaking down the big problem -  two granularities at a time.
 &lt;!-- ##   granularity visualization of time series data  --&gt;
 
 
-## An example : Electricity smart meter data
 
-&lt;i&gt;&lt;small&gt;Data source&lt;/i&gt;&lt;/small&gt; : [&lt;small&gt;&lt;i&gt;Department of the Environment and Energy, Australia&lt;/i&gt;&lt;/small&gt;](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)
-
+.left-column[
+## smart meter example
+#### - the data
+]
+.right-column[
 
 ```
 #&gt; # A tsibble: 1,450,232 x 8 [30m] &lt;UTC&gt;
@@ -302,30 +301,110 @@ Breaking down the big problem -  two granularities at a time.
 #&gt; #   gross_generation_kwh &lt;dbl&gt;,
 #&gt; #   net_generation_kwh &lt;dbl&gt;, other_kwh &lt;dbl&gt;
 ```
+&lt;i&gt;&lt;small&gt;Data source&lt;/i&gt;&lt;/small&gt; : [&lt;small&gt;&lt;i&gt;Department of the Environment and Energy, Australia&lt;/i&gt;&lt;/small&gt;](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)
 
+]
 ---
 
-### Set of possible temporal granularities
+.left-column[
+## smart meter example
+#### - the data
+#### - possible cyclic granularities
+]
+.right-column[
 
+.pull-left[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hhour_hour &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hhour_day &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hhour_week &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hhour_fortnight &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hhour_month &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_week &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_fortnight &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; hour_month &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_fortnight &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; week_fortnight &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; fortnight_month &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
 
-```
-#&gt;  [1] "hhour_hour"      "hhour_day"       "hhour_week"      "hhour_fortnight"
-#&gt;  [5] "hhour_month"     "hour_day"        "hour_week"       "hour_fortnight" 
-#&gt;  [9] "hour_month"      "day_week"        "day_fortnight"   "day_month"      
-#&gt; [13] "week_fortnight"  "week_month"      "fortnight_month"
-```
+.pull-right[
 
-### So there are 156 pair of granularities to look at.    &lt;span style="color:Red"&gt; -----&gt; &lt;large&gt; WHAT??? &lt;/large&gt;
-
+&lt;span style="color:Orange"&gt;&lt;large&gt;  So there are `\(^{15} P_2\)` =  210 pair of granularities to look at.    &lt;span style="color:Red"&gt; -----&gt; &lt;large&gt; WHAT??? &lt;/large&gt;
+]
+]
 ---
 
-## Set of harmonies
-
-### &lt;span style="color:Orange"&gt;&lt;large&gt;  Good news! Only 13 out 156 are harmonies &lt;/large&gt;
+.left-column[
+## smart meter example
+#### - the data
+#### - possible cyclic granularities
+#### - set of harmonies
+]
+.right-column[
 
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; facet_variable &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; x_variable &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; facet_levels &lt;/th&gt;
@@ -334,78 +413,91 @@ Breaking down the big problem -  two granularities at a time.
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_week &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 168 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_week &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 168 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_month &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 744 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 12 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 13 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
@@ -413,14 +505,70 @@ Breaking down the big problem -  two granularities at a time.
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-
+### &lt;span style="color:Orange"&gt;&lt;large&gt;  Good news! Only 13 out 210 are harmonies &lt;/large&gt;
+]
 ---
 
+.left-column[
+## smart meter example
+#### - the data
+#### - possible cyclic granularities
+#### - set of harmonies
+#### - gran_advice
+]
+.right-column[
 
-## Visualize Harmonies
 
+```
+#&gt; The chosen granularities are harmonies 
+#&gt;  
+#&gt; Recommended plots are: quantile 
+#&gt;  
+#&gt; Number of observations are homogenous across facets 
+#&gt;  
+#&gt; Number of observations are homogenous within facets 
+#&gt;  
+#&gt; Cross tabulation of granularities : 
+#&gt;  
+#&gt; # A tibble: 24 x 13
+#&gt;   hour_day   Jan   Feb   Mar   Apr   May   Jun   Jul
+#&gt;   &lt;fct&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt; 1 0         1151  1095   730   660   682  1008  1054
+#&gt; 2 1         1154  1094   730   660   682  1008  1054
+#&gt; 3 2         1152  1094   730   660   682  1008  1054
+#&gt; 4 3         1150  1094   730   660   682  1008  1054
+#&gt; # … with 20 more rows, and 5 more variables:
+#&gt; #   Aug &lt;dbl&gt;, Sep &lt;dbl&gt;, Oct &lt;dbl&gt;, Nov &lt;dbl&gt;,
+#&gt; #   Dec &lt;dbl&gt;
+```
+### &lt;span style="color:Orange"&gt;&lt;large&gt;  Quantile plots recommended for the first harmony &lt;/large&gt;
+]
+
+---
+.left-column[
+## smart meter example
+#### - the data
+#### - possible cyclic granularities
+#### - set of harmonies
+#### - gran_advice
+#### - visualize harmonies
+]
+.right-column[
+
+```r
+smart_meter50   %&gt;% 
+  filter(customer_id %in% cust1$customer_id) %&gt;% 
+* prob_plot("month_year", 
+*           "hour_day",
+*           plot_type = "quantile", 
+*           response = "general_supply_kwh",
+*           quantile_prob = c(0.05, 0.1, 0.25, 
+*                             0.5, 0.75, 0.9, 0.95)
+```
 
 &lt;img src="figure/granplotoverlay3-1.svg" style="display: block; margin: auto;" /&gt;
+### &lt;span style="color:Orange"&gt;&lt;large&gt;  Quantile plots recommended for the first harmony &lt;/large&gt;
+]
 
 ---
 

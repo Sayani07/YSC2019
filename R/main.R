@@ -81,8 +81,10 @@ smart_meter50
 ##----search_gran
 
 
-smart_meter50 %>%
+search_gran <- smart_meter50 %>%
   search_gran(lowest_unit = "hhour", highest_unit =  "month")
+
+knitr::kable(search_gran, row.names = TRUE)
 
 
 ##----create_gran
@@ -110,7 +112,7 @@ cust4 <- smart_meter50 %>% distinct(customer_id) %>% head(10)
 smart_meter50 %>% 
   harmony(ugran = "month",
           lgran = "hhour",
-          filter_out = c("fortnight", "hhour")) %>% knitr::kable()
+          filter_out = c("fortnight", "hhour")) %>% knitr::kable(row.names = TRUE)
 
 ##----granplotoverlay1
 
@@ -151,6 +153,12 @@ smart_meter50   %>%
   scale_x_discrete(breaks = seq(0,23,2)) + 
   theme_remark()
 
+##----gran-advice
+
+smart_meter50%>% 
+  filter(customer_id %in% cust1$customer_id) %>% 
+  gran_advice("month_year", 
+            "hour_day")
 
 
 ##----granplotoutlier
