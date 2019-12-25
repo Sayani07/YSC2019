@@ -33,7 +33,9 @@ library(xaringanthemer)
 solarized_dark(
   header_font_google = google_font("Josefin Sans"),
   text_font_google   = google_font("Montserrat", "300", "300i"),
-  code_font_google   = google_font("Droid Mono")
+  code_font_google   = google_font("Droid Mono"),
+  header_color = "#FFFFE0",
+  text_color = "#FFDAB9"
   
 )
 ```
@@ -324,6 +326,10 @@ Recommendation on a harmony? `gran_advice()`
 ]
 .right-column[
 
+```r
+smart_meter %>%
+* search_gran(lowest_unit = "hhour", highest_unit =  "month")
+```
 .pull-left[
 ```{r search_gran}
 ```
@@ -331,7 +337,7 @@ Recommendation on a harmony? `gran_advice()`
 
 .pull-right[
 
-<span style="color:Orange"><large>  So there are $^{15} P_2$ =  `r length(combn(15,2))` pair of granularities to look at.    <span style="color:Red"> -----> <large> WHAT??? </large>
+<span style="color:Orange"><large>  So there are $^{15} P_2$ =  `r length(combn(6,2))` pair of granularities to look at.    <span style="color:Red"> -----> <large> </large>
 ]
 ]
 ---
@@ -343,10 +349,16 @@ Recommendation on a harmony? `gran_advice()`
 #### - set of harmonies
 ]
 .right-column[
+
+```r
+smart_meter %>% 
+* harmony(ugran = "month", lgran = "hhour",
+*          filter_out = c("fortnight", "hhour"))
+```
 
 ```{r harmony}
 ```
-### <span style="color:Orange"><large>  Good news! Only 13 out `r length(combn(15,2))` are harmonies </large>
+### <span style="color:Orange"><large>  Good news! Only 13 out `r length(combn(6,2))` are harmonies </large>
 ]
 ---
 
@@ -355,9 +367,14 @@ Recommendation on a harmony? `gran_advice()`
 #### - the data
 #### - possible cyclic granularities
 #### - set of harmonies
-#### - gran_advice
+#### - advice
 ]
 .right-column[
+
+```r
+smart_meter %>% 
+*  gran_advice("month_year", "hour_day")
+```
 
 ```{r gran-advice}
 ```
@@ -370,16 +387,14 @@ Recommendation on a harmony? `gran_advice()`
 #### - the data
 #### - possible cyclic granularities
 #### - set of harmonies
-#### - gran_advice
+#### - advice
 #### - visualize harmonies
 ]
 .right-column[
 
 ```r
-smart_meter50   %>% 
-  filter(customer_id %in% cust1$customer_id) %>% 
-* prob_plot("month_year", 
-*           "hour_day",
+smart_meter %>% 
+* prob_plot("month_year","hour_day",
 *           plot_type = "quantile", 
 *           response = "general_supply_kwh",
 *           quantile_prob = c(0.05, 0.1, 0.25, 
