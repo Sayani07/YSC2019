@@ -30,14 +30,16 @@ read_chunk('R/main.R')
 
 ```{r xaringan-themer, include = FALSE}
 library(xaringanthemer)
-solarized_dark(
-  header_font_google = google_font("Josefin Sans"),
-  text_font_google   = google_font("Montserrat", "300", "300i"),
-  code_font_google   = google_font("Droid Mono"),
-  header_color = "#FFFFE0",
-  text_color = "#FFDAB9"
-  
-)
+ solarized_light(
+   header_font_google = google_font("Josefin Sans"),
+   text_font_google   = google_font("Montserrat", "300", "300i"),
+   code_font_google   = google_font("Droid Mono"),
+   header_color = "#00aba9",
+   text_color = "#2b5797"
+   # header_color = "#00008B",
+   # text_color = "#8B4513"
+   
+ )
 ```
 
 # Electricity smart meter technology  (~ 40 billion half hourly observations)
@@ -129,9 +131,9 @@ Well, there can be numerous ways to analyse this data! But I was interested in a
 class: center,middle
 
 
-##  **Problem** :  <span style="color:#FFDAB9"> How do we systematically explore large quantities of temporal data across different deconstructions of time (half-hour, day, type of day, year) to find regular patterns or anomalies in behaviour? 
+##  **Problem** : How do we systematically explore large quantities of temporal data across different deconstructions of time (half-hour, day, type of day, year) to find regular patterns or anomalies in behaviour? 
 
-## **Solution** : <span style="color:#FFDAB9"> Visualize probability distributions over different time granularities.
+## **Solution** :  Visualize probability distributions over different time granularities.
 
 ???
 
@@ -332,7 +334,7 @@ smart_meter %>%
 
 .pull-right[
 
-<span style="color:Orange"><large>  So there are $^{6} P_2$ =  `r length(combn(6,2))` pair of granularities to look at.    <span style="color:Red"> <large> </large>
+<large>  So there are $^{6} P_2$ =  `r length(combn(6,2))` pair of granularities to look at.
 ]
 ]
 ---
@@ -353,7 +355,7 @@ smart_meter %>%
 
 ```{r harmony}
 ```
-### <span style="color:Orange"><large>  Good news! Only 13 out `r length(combn(6,2))` are harmonies </large>
+### <large>  Good news! Only 13 out `r length(combn(6,2))` are harmonies </large>
 ]
 ---
 
@@ -373,7 +375,7 @@ smart_meter %>%
 
 ```{r gran-advice}
 ```
-### <span style="color:Orange"><large>  Quantile plots recommended for the first harmony </large>
+### <span style="color:Orange"><large>  Quantile plots recommended for the harmony pair (month_year, hour_day) </large>
 ]
 
 ---
@@ -398,7 +400,6 @@ smart_meter %>%
 
 ```{r granplotoverlay3}
 ```
-### <span style="color:Orange"><large>  Quantile plots recommended for the first harmony </large>
 ]
 
 ---
@@ -420,30 +421,35 @@ smart_meter %>%
 ```
 
 ---
-
 class: center, middle
 
-### More Information
 
-Package : https://github.com/Sayani07/gravitas  
-Slides: https://sayanigupta-ysc.netlify.com/
-
-### With special thanks to 
+### Special thanks to
 
 .pull-left[
-
-#### <span style="color: White"> Supervisors <span style="color: Crimson"> Professor Rob J Hyndman <span style="color: White">  &  <span style="color: Crimson">  Professor Dianne Cook
-<br>
-#### <span style="color: White"> Slides created with <span style="color: Crimson"><i> Rmarkdown, knitr, xaringan, xaringanthemer</i>
-<br>
-**<span style="color: Crimson"> Monash University**
+.portrait[
+![](https://slides.earo.me/phd19/img/di.jpg)
+Di Cook
 ]
+<img src="images/Numbats.png">
+NUMBATS
+]
+
 
 .pull-right[
-### <span style="color: White"> NUMBATS
-<br>
-```{r numbats, echo=FALSE, out.width="100%"}
-  knitr::include_graphics("images/Numbats.png")
-```
+.portrait[
+![](https://pbs.twimg.com/profile_images/1103150025981321216/dV3Wz_ql_400x400.png)
+Rob J Hyndman
 ]
+####  More Information
+
+Package: [gravitas 0.1.0 on CRAN](https://cran.r-project.org/web/packages/gravitas/index.html)  
+Code: https://github.com/Sayani07/gravitas  
+Slides: https://sayanigupta-ysc.netlify.com/  
+
+<span style="color: White"> Slides created with <span style="color: Crimson"><i> Rmarkdown, knitr, xaringan, xaringanthemer</i>
+
+
+]
+
 

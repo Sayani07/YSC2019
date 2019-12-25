@@ -86,7 +86,7 @@ search_gran <- smart_meter50 %>%
   search_gran(lowest_unit = "hhour", highest_unit =  "month", 
               filter_out = c("fortnight", "hhour"))
 
-knitr::kable(search_gran, row.names = TRUE) %>% kable_styling(font_size = 14)
+knitr::kable(search_gran, row.names = TRUE) %>% kable_styling(font_size = 20)
 
 
 ##----create_gran
@@ -114,7 +114,7 @@ cust4 <- smart_meter50 %>% distinct(customer_id) %>% head(10)
 smart_meter50 %>% 
   harmony(ugran = "month",
           lgran = "hhour",
-          filter_out = c("fortnight", "hhour")) %>% knitr::kable(row.names = TRUE) %>% kable_styling(font_size = 14)
+          filter_out = c("fortnight", "hhour")) %>% knitr::kable(row.names = TRUE) %>% kable_styling(font_size = 20)
 
 ##----granplotoverlay1
 
