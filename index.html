@@ -4,6 +4,7 @@
     <title>Exploring probability distributions for bivariate temporal granularities</title>
     <meta charset="utf-8" />
     <meta name="author" content="  Sayani Gupta    Sayani07    @SayaniGupta07   https://sayanigupta-iisa.netlify.com/" />
+    <script src="index_files/kePrint/kePrint.js"></script>
     <link rel="stylesheet" href="libs/remark.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="libs/font-awesome/css/fontawesome-all.css" type="text/css" />
@@ -173,15 +174,10 @@ class:  middle center
 ##  Data Structure for exploration 
 
 
-#### Tsibble is  a data abstraction for tidy temporal data
+#### Extension of a tsibble - data abstraction for tidy temporal data
 
 
-&lt;img src="images/tsibble.png", height = "200px"&gt;
-
-#### Data structure is an extension of tsibble structure
-
-
-&lt;img src="images/data-structure.png", height = "200px"&gt;
+&lt;img src="images/datastructure.png", height = "400px"&gt;
 
 
 &lt;!-- # Computation of granularities --&gt;
@@ -309,12 +305,16 @@ Recommendation on a harmony? `gran_advice()`
 .left-column[
 ## smart meter example
 #### - the data
-#### - possible cyclic granularities
+#### - possible cyclic granularities `search_gran()`
 ]
 .right-column[
 
+```r
+smart_meter %&gt;%
+* search_gran(lowest_unit = "hhour", highest_unit =  "month")
+```
 .pull-left[
-&lt;table&gt;
+&lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
@@ -324,63 +324,27 @@ Recommendation on a harmony? `gran_advice()`
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; hhour_hour &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; hhour_day &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; hhour_week &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; hhour_fortnight &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; hhour_month &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_day &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_week &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; hour_fortnight &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; hour_month &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_week &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; day_fortnight &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; day_month &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; week_fortnight &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; week_month &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 15 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; fortnight_month &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -388,7 +352,7 @@ Recommendation on a harmony? `gran_advice()`
 
 .pull-right[
 
-&lt;span style="color:Orange"&gt;&lt;large&gt;  So there are `\(^{15} P_2\)` =  210 pair of granularities to look at.    &lt;span style="color:Red"&gt; -----&gt; &lt;large&gt; WHAT??? &lt;/large&gt;
+&lt;span style="color:Orange"&gt;&lt;large&gt;  So there are `\(^{6} P_2\)` =  30 pair of granularities to look at.    &lt;span style="color:Red"&gt; &lt;large&gt; &lt;/large&gt;
 ]
 ]
 ---
@@ -396,12 +360,18 @@ Recommendation on a harmony? `gran_advice()`
 .left-column[
 ## smart meter example
 #### - the data
-#### - possible cyclic granularities
-#### - set of harmonies
+#### - possible cyclic granularities `search_gran()`
+#### - set of harmonies `harmony()`
 ]
 .right-column[
 
-&lt;table&gt;
+```r
+smart_meter %&gt;% 
+* harmony(ugran = "month", lgran = "hhour",
+*          filter_out = c("fortnight", "hhour"))
+```
+
+&lt;table class="table" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
@@ -505,18 +475,23 @@ Recommendation on a harmony? `gran_advice()`
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-### &lt;span style="color:Orange"&gt;&lt;large&gt;  Good news! Only 13 out 210 are harmonies &lt;/large&gt;
+### &lt;span style="color:Orange"&gt;&lt;large&gt;  Good news! Only 13 out 30 are harmonies &lt;/large&gt;
 ]
 ---
 
 .left-column[
 ## smart meter example
 #### - the data
-#### - possible cyclic granularities
-#### - set of harmonies
-#### - gran_advice
+#### - possible cyclic granularities `search_gran()`
+#### - set of harmonies `harmony()`
+#### - advice `gran_advice()`
 ]
 .right-column[
+
+```r
+smart_meter %&gt;% 
+*  gran_advice("month_year", "hour_day")
+```
 
 
 ```
@@ -548,18 +523,16 @@ Recommendation on a harmony? `gran_advice()`
 .left-column[
 ## smart meter example
 #### - the data
-#### - possible cyclic granularities
-#### - set of harmonies
-#### - gran_advice
-#### - visualize harmonies
+#### - possible cyclic granularities `search_gran()`
+#### - set of harmonies `harmony()`
+#### - advice `gran_advice()`
+#### - visualize harmonies `prob_plot()`
 ]
 .right-column[
 
 ```r
-smart_meter50   %&gt;% 
-  filter(customer_id %in% cust1$customer_id) %&gt;% 
-* prob_plot("month_year", 
-*           "hour_day",
+smart_meter %&gt;% 
+* prob_plot("month_year","hour_day",
 *           plot_type = "quantile", 
 *           response = "general_supply_kwh",
 *           quantile_prob = c(0.05, 0.1, 0.25, 

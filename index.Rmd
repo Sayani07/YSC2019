@@ -196,15 +196,10 @@ class:  middle center
 ##  Data Structure for exploration 
 
 
-#### Tsibble is  a data abstraction for tidy temporal data
+#### Extension of a tsibble - data abstraction for tidy temporal data
 
 
-<img src="images/tsibble.png", height = "200px">
-
-#### Data structure is an extension of tsibble structure
-
-
-<img src="images/data-structure.png", height = "200px">
+<img src="images/datastructure.png", height = "400px">
 
 
 <!-- # Computation of granularities -->
@@ -322,7 +317,7 @@ Recommendation on a harmony? `gran_advice()`
 .left-column[
 ## smart meter example
 #### - the data
-#### - possible cyclic granularities
+#### - possible cyclic granularities `search_gran()`
 ]
 .right-column[
 
@@ -337,7 +332,7 @@ smart_meter %>%
 
 .pull-right[
 
-<span style="color:Orange"><large>  So there are $^{15} P_2$ =  `r length(combn(6,2))` pair of granularities to look at.    <span style="color:Red"> -----> <large> </large>
+<span style="color:Orange"><large>  So there are $^{6} P_2$ =  `r length(combn(6,2))` pair of granularities to look at.    <span style="color:Red"> <large> </large>
 ]
 ]
 ---
@@ -345,8 +340,8 @@ smart_meter %>%
 .left-column[
 ## smart meter example
 #### - the data
-#### - possible cyclic granularities
-#### - set of harmonies
+#### - possible cyclic granularities `search_gran()`
+#### - set of harmonies `harmony()`
 ]
 .right-column[
 
@@ -365,9 +360,9 @@ smart_meter %>%
 .left-column[
 ## smart meter example
 #### - the data
-#### - possible cyclic granularities
-#### - set of harmonies
-#### - advice
+#### - possible cyclic granularities `search_gran()`
+#### - set of harmonies `harmony()`
+#### - advice `gran_advice()`
 ]
 .right-column[
 
@@ -385,10 +380,10 @@ smart_meter %>%
 .left-column[
 ## smart meter example
 #### - the data
-#### - possible cyclic granularities
-#### - set of harmonies
-#### - advice
-#### - visualize harmonies
+#### - possible cyclic granularities `search_gran()`
+#### - set of harmonies `harmony()`
+#### - advice `gran_advice()`
+#### - visualize harmonies `prob_plot()`
 ]
 .right-column[
 
