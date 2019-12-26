@@ -3,9 +3,8 @@
   <head>
     <title>Exploring probability distributions for bivariate temporal granularities</title>
     <meta charset="utf-8" />
-    <meta name="author" content="  Sayani Gupta    Sayani07    @SayaniGupta07   https://sayanigupta-iisa.netlify.com/" />
+    <meta name="author" content="  Sayani Gupta     @Sayani07    https://sayanigupta-ysc.netlify.com/" />
     <script src="index_files/kePrint/kePrint.js"></script>
-    <link rel="stylesheet" href="libs/remark.css" type="text/css" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="libs/font-awesome/css/fontawesome-all.css" type="text/css" />
   </head>
@@ -14,8 +13,8 @@
 class: center, middle, inverse, title-slide
 
 # Exploring probability distributions for bivariate temporal granularities
-### <br> Sayani Gupta <br> <i class='fab fa-github'></i> Sayani07 <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <span class="citation">@SayaniGupta07</span> <br><small> <a href="https://sayanigupta-iisa.netlify.com/" class="uri">https://sayanigupta-iisa.netlify.com/</a></small>
-### <font size="5"> Indian Institute of Statistical Association <br> December 26, 2019
+### <br> Sayani Gupta <br> <i class='fab fa-twitter' style='color:#6CADDE'></i> <i class='fab fa-github'></i> <span class="citation">@Sayani07</span> <br><br><small> <a href="https://sayanigupta-ysc.netlify.com/" class="uri">https://sayanigupta-ysc.netlify.com/</a></small>
+### <font size="5"> Young Statisticians Conference <br> October 2, 2019
 
 ---
 
@@ -77,20 +76,6 @@ Just to give you some perspective I have this data from Department of Energy and
 
 ---
 
-# Explorartory Data Analysis
-
-
-&lt;img src="images/dino-saurus.gif" style="display: block; margin: auto;" /&gt;
-
-
-["Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing"](https://www.autodeskresearch.com/publications/samestats)
-
-&lt;!-- -- [Nick Tierney, WOMBAT2019](https://github.com/njtierney/wombat19) --&gt;
-
-
-
----
-
 
 background-image: url("images/problem.png")
 
@@ -107,9 +92,9 @@ Well, there can be numerous ways to analyse this data! But I was interested in a
 class: center,middle
 
 
-##  **Problem** : How do we systematically explore large quantities of temporal data across different deconstructions of time (half-hour, day, type of day, year) to find regular patterns or anomalies in behaviour? 
+##  **Problem** :  &lt;span style="color:#FFDAB9"&gt; How do we systematically explore large quantities of temporal data across different deconstructions of time (half-hour, day, type of day, year) to find regular patterns or anomalies in behaviour? 
 
-## **Solution** :  Visualize probability distributions over different time granularities.
+## **Solution** : &lt;span style="color:#FFDAB9"&gt; Visualize probability distributions over different time granularities.
 
 ???
 
@@ -119,93 +104,70 @@ The key terms are decontructing time and visualizing distribution. In the next c
 
 
 ---
-class: middle center
 
-.animated.bounce[
-&lt;img src="images/gravitas.png" height=280px&gt;
-]
-
-## Visualize probability distributions over different time granularities
-
-
----
-
-#  Time granularities
-### abstractions of time based on calendar
-&lt;br&gt;
+#  Decontructing time: Arrangement
 .pull-left[
-
-### Arrangement
+#### **Granularities**  
+abstractions of time based on calendar
 &lt;br&gt;
- &lt;i&gt; **Linear**&lt;/i&gt;  
- - days, weeks, months, years  
 &lt;br&gt;
-
-&lt;i&gt; **Cyclic** &lt;/i&gt;
-
+ -  &lt;i&gt; **Linear**&lt;/i&gt;  days, weeks, months, years  
+&lt;br&gt;
  -  &lt;i&gt; **Circular** &lt;/i&gt;   day-of-week, month-of-year or hour-of-day  
- -  &lt;i&gt; **Quasi-circular** &lt;/i&gt;   day-of-month, week-of-month   
- -  &lt;i&gt; **Aperiodic** &lt;/i&gt;  public holidays, school vacations
+&lt;br&gt;
+ -  &lt;i&gt; **Aperiodic** &lt;/i&gt;  day-of-month, week-of-month  
 ]
 
 .pull-right[
-&lt;!-- # ```{r lineartime, out.width="260%", out.height="300%"} --&gt;
-&lt;!-- # ``` --&gt;
-&lt;!-- # &lt;br&gt; --&gt;
-&lt;!-- # ```{r circulartime, out.width = "100%", out.height="70%"} --&gt;
-&lt;!-- # ``` --&gt;
-&lt;!-- #  --&gt;
-
-### Order 
-
-- &lt;i&gt;**Single-order-up**&lt;/i&gt; second-of-minute, hour-of-day  
+&lt;img src="images/linear-time.png" width="260%" height="150%" style="display: block; margin: auto;" /&gt;
 &lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-- &lt;i&gt;**Multiple-order-up**&lt;/i&gt; second-of-hour, hour-of-week  
+&lt;img src="images/circular.png" width="100%" style="display: block; margin: auto;" /&gt;
 
-&lt;!-- # ```{r calendar, out.width="100%"} --&gt;
-&lt;!-- #  --&gt;
-&lt;!-- # ``` --&gt;
+
 ]
+
 ---
-class:  middle center
 
-##  Data Structure for exploration 
-
-
-#### Extension of a tsibble - data abstraction for tidy temporal data
+#  Decontructing time: Order
 
 
-&lt;img src="images/datastructure.png", height = "400px"&gt;
+&lt;i&gt;**Single-order-up**&lt;/i&gt; second-of-minute, hour-of-day  
+&lt;br&gt;
+&lt;i&gt;**Multiple-order-up**&lt;/i&gt; second-of-hour, hour-of-week  
 
-
-&lt;!-- # Computation of granularities --&gt;
-
-&lt;!-- `\(z\)`       : index of a tsibble   --&gt;
-&lt;!-- &lt;br&gt; --&gt;
-&lt;!-- `\(x\)`, `\(y\)`  : two units in the hierarchy table with  `\(order(x) &lt;  order(y)\)`   --&gt;
-&lt;!-- &lt;br&gt; --&gt;
-&lt;!-- `\(f(x, y)\)` : accessor function for computing the granularity   --&gt;
-&lt;!-- &lt;br&gt; --&gt;
-&lt;!-- `\(c(x, y)\)` : a constant which relates x and y   --&gt;
-&lt;!-- &lt;br&gt; --&gt;
-
-&lt;!-- #### **Single-order-up** --&gt;
-&lt;!-- `$$f(x, y) = \lfloor z/c(z,x) \rfloor\mod c(x,y)$$` where `\(y = x+1\)` --&gt;
-
-
-&lt;!-- #### **Multiple-order-up** --&gt;
-
-
-&lt;!-- \begin{split} --&gt;
-&lt;!-- f(x,y) &amp; = \sum_{i=0}^{order(y) - order(x) - 1} c(x, x+i)(f(x --&gt;
-&lt;!--   +i, x+i+1) - 1)\\ --&gt;
-&lt;!-- \end{split} --&gt;
+&lt;img src="images/calendar_new.jpg" width="100%" height="380" style="display: block; margin: auto;" /&gt;
 
 
 ---
-## Relationship of cyclic granularities
+
+# Computation of granularities
+
+`\(z\)`       : index of a tsibble  
+&lt;br&gt;
+`\(x\)`, `\(y\)`  : two units in the hierarchy table with  `\(order(x) &lt;  order(y)\)`  
+&lt;br&gt;
+`\(f(x, y)\)` : accessor function for computing the granularity  
+&lt;br&gt;
+`\(c(x, y)\)` : a constant which relates x and y  
+&lt;br&gt;
+
+#### **Single-order-up**
+`$$f(x, y) = \lfloor z/c(z,x) \rfloor\mod c(x,y)$$` where `\(y = x+1\)`
+
+
+#### **Multiple-order-up**
+
+
+`\begin{split}
+f(x,y) &amp; = \sum_{i=0}^{order(y) - order(x) - 1} c(x, x+i)(f(x
+  +i, x+i+1) - 1)\\
+\end{split}`
+
+
+---
+
+
+## Interaction of bivariate granularities
 
 **Harmonies** : pairs of granularities that aid exploratory data analysis  
 **Clashes**   : pairs leading to structurally empty sets  
@@ -214,8 +176,10 @@ class:  middle center
 
 ---
 
-## Summarising probability distributions
 
+## Visualizing probability distributions
+
+Breaking down the big problem -  two granularities at a time.
 
 
 #### Types of statistical distribution plots 
@@ -234,11 +198,11 @@ class:  middle center
 --- 
 
 .left[
-Compute any cyclic granularity? &lt;span style="color:Red"&gt;`create_gran()`
+- Compute any granularity? &lt;span style="color:Red"&gt;`create_gran`
  &lt;br&gt;
  &lt;br&gt;
  
-Exhaustive list of granularities to explore? &lt;span style="color:Red"&gt; `search_gran()`
+- Exhaustive list of granularities to explore? &lt;span style="color:Red"&gt; `search_gran`
  &lt;br&gt;
        ]
 
@@ -248,10 +212,10 @@ Exhaustive list of granularities to explore? &lt;span style="color:Red"&gt; `sea
  ### Interaction
  --- 
  
-Check if cyclic granularities are harmonies/clashes?  `is.harmony()`
+- Check if bivariate granularities are harmonies/clashes? &lt;span style="color:Red"&gt;  `is.harmony`
 &lt;br&gt;
 &lt;br&gt;
-List of harmonies to explore? `harmony()`
+- List of harmonies to explore? &lt;span style="color:Red"&gt; `harmony`
 &lt;br&gt;
  ]
 
@@ -259,11 +223,11 @@ List of harmonies to explore? `harmony()`
 ### Visualization
 --- 
 
-Possible probability distributions plots for harmonies?  `prob_plot()`
+- Best probability distribution plot for harmonies? 
+ &lt;span style="color:Red"&gt; `granplot`
 &lt;br&gt;
 &lt;br&gt;
-Sufficient observations?  `gran_obs()`  
-Recommendation on a harmony? `gran_advice()`
+- Sufficient observations?  &lt;span style="color:Red"&gt;  `gran_obs`
 
  ]
 
@@ -276,12 +240,10 @@ Recommendation on a harmony? `gran_advice()`
 &lt;!-- ##   granularity visualization of time series data  --&gt;
 
 
+## An example : Electricity smart meter data
 
-.left-column[
-## smart meter example
-#### - the data
-]
-.right-column[
+&lt;i&gt;&lt;small&gt;Data source&lt;/i&gt;&lt;/small&gt; : [&lt;small&gt;&lt;i&gt;Department of the Environment and Energy, Australia&lt;/i&gt;&lt;/small&gt;](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)
+
 
 ```
 #&gt; # A tsibble: 1,450,232 x 8 [30m] &lt;UTC&gt;
@@ -297,23 +259,11 @@ Recommendation on a harmony? `gran_advice()`
 #&gt; #   gross_generation_kwh &lt;dbl&gt;,
 #&gt; #   net_generation_kwh &lt;dbl&gt;, other_kwh &lt;dbl&gt;
 ```
-&lt;i&gt;&lt;small&gt;Data source&lt;/i&gt;&lt;/small&gt; : [&lt;small&gt;&lt;i&gt;Department of the Environment and Energy, Australia&lt;/i&gt;&lt;/small&gt;](https://data.gov.au/dataset/4e21dea3-9b87-4610-94c7-15a8a77907ef)
 
-]
 ---
 
-.left-column[
-## smart meter example
-#### - the data
-#### - possible cyclic granularities `search_gran()`
-]
-.right-column[
+### Set of possible temporal granularities
 
-```r
-smart_meter %&gt;%
-* search_gran(lowest_unit = "hhour", highest_unit =  "month")
-```
-.pull-left[
 &lt;table class="table" style="font-size: 20px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -348,28 +298,14 @@ smart_meter %&gt;%
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-]
 
-.pull-right[
+### So there are 156 pair of granularities to look at.    &lt;span style="color:Red"&gt; -----&gt; &lt;large&gt; WHAT??? &lt;/large&gt;
 
-&lt;large&gt;  So there are `\(^{6} P_2\)` =  30 pair of granularities to look at.
-]
-]
 ---
 
-.left-column[
-## smart meter example
-#### - the data
-#### - possible cyclic granularities `search_gran()`
-#### - set of harmonies `harmony()`
-]
-.right-column[
+## Set of harmonies
 
-```r
-smart_meter %&gt;% 
-* harmony(ugran = "month", lgran = "hhour",
-*          filter_out = c("fortnight", "hhour"))
-```
+### &lt;span style="color:Orange"&gt;&lt;large&gt;  Good news! Only 13 out 156 are harmonies &lt;/large&gt;
 
 &lt;table class="table" style="font-size: 20px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -475,72 +411,14 @@ smart_meter %&gt;%
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-### &lt;large&gt;  Good news! Only 13 out 30 are harmonies &lt;/large&gt;
-]
----
-
-.left-column[
-## smart meter example
-#### - the data
-#### - possible cyclic granularities `search_gran()`
-#### - set of harmonies `harmony()`
-#### - advice `gran_advice()`
-]
-.right-column[
-
-```r
-smart_meter %&gt;% 
-*  gran_advice("month_year", "hour_day")
-```
-
-
-```
-#&gt; The chosen granularities are harmonies 
-#&gt;  
-#&gt; Recommended plots are: quantile 
-#&gt;  
-#&gt; Number of observations are homogenous across facets 
-#&gt;  
-#&gt; Number of observations are homogenous within facets 
-#&gt;  
-#&gt; Cross tabulation of granularities : 
-#&gt;  
-#&gt; # A tibble: 24 x 13
-#&gt;   hour_day   Jan   Feb   Mar   Apr   May   Jun   Jul
-#&gt;   &lt;fct&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 0         1151  1095   730   660   682  1008  1054
-#&gt; 2 1         1154  1094   730   660   682  1008  1054
-#&gt; 3 2         1152  1094   730   660   682  1008  1054
-#&gt; 4 3         1150  1094   730   660   682  1008  1054
-#&gt; # … with 20 more rows, and 5 more variables:
-#&gt; #   Aug &lt;dbl&gt;, Sep &lt;dbl&gt;, Oct &lt;dbl&gt;, Nov &lt;dbl&gt;,
-#&gt; #   Dec &lt;dbl&gt;
-```
-### &lt;span style="color:Orange"&gt;&lt;large&gt;  Quantile plots recommended for the harmony pair (month_year, hour_day) &lt;/large&gt;
-]
 
 ---
-.left-column[
-## smart meter example
-#### - the data
-#### - possible cyclic granularities `search_gran()`
-#### - set of harmonies `harmony()`
-#### - advice `gran_advice()`
-#### - visualize harmonies `prob_plot()`
-]
-.right-column[
 
-```r
-smart_meter %&gt;% 
-* prob_plot("month_year","hour_day",
-*           plot_type = "quantile", 
-*           response = "general_supply_kwh",
-*           quantile_prob = c(0.05, 0.1, 0.25, 
-*                             0.5, 0.75, 0.9, 0.95)
-```
+
+## Visualize Harmonies
+
 
 &lt;img src="figure/granplotoverlay3-1.svg" style="display: block; margin: auto;" /&gt;
-]
 
 ---
 
@@ -601,35 +479,29 @@ smart_meter %&gt;%
 &lt;img src="images/cricketex.gif" style="display: block; margin: auto;" /&gt;
 
 ---
+
 class: center, middle
 
+### More Information
 
-### Special thanks to
+Package : https://github.com/Sayani07/gravitas  
+Slides: https://sayanigupta-ysc.netlify.com/
+
+### With special thanks to 
 
 .pull-left[
-.portrait[
-![](https://slides.earo.me/phd19/img/di.jpg)
-Di Cook
-]
-&lt;img src="images/Numbats.png"&gt;
-NUMBATS
-]
 
+#### &lt;span style="color: White"&gt; Supervisors &lt;span style="color: Crimson"&gt; Professor Rob J Hyndman &lt;span style="color: White"&gt;  &amp;  &lt;span style="color: Crimson"&gt;  Professor Dianne Cook
+&lt;br&gt;
+#### &lt;span style="color: White"&gt; Slides created with &lt;span style="color: Crimson"&gt;&lt;i&gt; Rmarkdown, knitr, xaringan, xaringanthemer&lt;/i&gt;
+&lt;br&gt;
+**&lt;span style="color: Crimson"&gt; Monash University**
+]
 
 .pull-right[
-.portrait[
-![](https://pbs.twimg.com/profile_images/1103150025981321216/dV3Wz_ql_400x400.png)
-Rob J Hyndman
-]
-####  More Information
-
-Package: [gravitas 0.1.0 on CRAN](https://cran.r-project.org/web/packages/gravitas/index.html)  
-Code: https://github.com/Sayani07/gravitas  
-Slides: https://sayanigupta-ysc.netlify.com/  
-
-&lt;span style="color: White"&gt; Slides created with &lt;span style="color: Crimson"&gt;&lt;i&gt; Rmarkdown, knitr, xaringan, xaringanthemer&lt;/i&gt;
-
-
+### &lt;span style="color: White"&gt; NUMBATS
+&lt;br&gt;
+&lt;img src="images/Numbats.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
